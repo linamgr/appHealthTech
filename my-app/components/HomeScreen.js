@@ -50,7 +50,14 @@ const styles = StyleSheet.create({
 });
 
 let addItem = item => {
-		firebaseDatabase.ref('/leituras/key').update({Peso: item});
+      if(Boolean(Number(item))){
+        firebaseDatabase.ref('/leituras/key').update({Peso: item});
+        window.alert("Peso adicionado com sucesso");
+      }
+      else{
+        window.alert("Entrada inválida");
+      }
+      
 };
 
 export default class Homescreen extends React.Component {
@@ -63,7 +70,7 @@ export default class Homescreen extends React.Component {
 
   	handleSubmit = () => {
     	addItem(this.state.name);
-    	Alert.alert('Item saved successfully');
+    	//Alert.alert('Item saved successfully');
 	};
 
     render() {
