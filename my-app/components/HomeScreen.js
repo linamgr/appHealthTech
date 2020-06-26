@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
 });
 
 let addItem = item => {
-  if(Boolean(Number(item))){
+  if(Boolean(Number(item)) && Number(item) > 0){
     firebaseDatabase.ref('/leituras/key').update({Peso: item});
     window.alert("Peso adicionado com sucesso");
   }
