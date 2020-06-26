@@ -6,7 +6,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "lint": "eslint *.js **/*.js"
   },
   "jest": {
     "preset": "jest-expo"
@@ -34,7 +35,13 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
+    "babel-eslint": "^10.1.0",
     "babel-preset-expo": "~8.1.0",
+    "eslint": "^7.3.1",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.0",
     "jest-expo": "~37.0.0"
   },
   "private": true
