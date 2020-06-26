@@ -7,6 +7,24 @@ O desafio é desenvolver um produto de software (aplicativo móvel) na área de 
 
 ## Instalação
 
+```git clone https://github.com/linamgr/appHealthTech.git```
+
+Ir para pasta do appHealthCare e instalar as bibliotecas
+
+```npm install```
+
+Instalar o expo-cli
+
+```sudo npm install -g expo-cli```
+
+Executar o projeto
+
+```npm start```
+
+Arrumar erros com o linter
+
+```npm run lint -- --fix```
+
 ## Estrutura do diretório
 
 ## Branches
