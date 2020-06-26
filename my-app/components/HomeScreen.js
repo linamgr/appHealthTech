@@ -2,7 +2,7 @@ import React from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import FirebaseService from '../services/FirebaseService.js';
 import {firebaseDatabase} from '../utils/firebase';
-import { Button} from 'react-native';
+import { Button } from '@material-ui/core';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { TouchableHighlight, TextInput, Alert} from 'react-native';
 
@@ -12,13 +12,13 @@ const styles = StyleSheet.create({
     padding: 30,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: 'black'
+    backgroundColor: 'white'
   },
   title: {
     marginBottom: 20,
     fontSize: 25,
     textAlign: 'center',
-    color:'white'
+    color:'black'
   },
   itemInput: {
     height: 50,
@@ -26,38 +26,41 @@ const styles = StyleSheet.create({
     marginRight: 5,
     fontSize: 23,
     borderWidth: 1,
-    borderColor: 'white',
+    borderColor: 'black',
     borderRadius: 8,
-    color: 'white'
+    color: 'black'
   },
   buttonText: {
     fontSize: 18,
     color: '#111',
-    alignSelf: 'center'
+    alignSelf: 'auto',
+    padding: 70,
   },
+
   button: {
-    height: 45,
+    height: 30,
     flexDirection: 'row',
     backgroundColor: 'white',
     borderColor: 'white',
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 10,
-    marginTop: 10,
-    alignSelf: 'stretch',
+    marginTop:10,
+    alignSelf: 'auto',
     justifyContent: 'center'
-  }
+  },
+
 });
 
 let addItem = item => {
-      if(Boolean(Number(item))){
-        firebaseDatabase.ref('/leituras/key').update({Peso: item});
-        window.alert("Peso adicionado com sucesso");
-      }
-      else{
-        window.alert("Entrada inválida");
-      }
-      
+  if(Boolean(Number(item))){
+    firebaseDatabase.ref('/leituras/key').update({Peso: item});
+    window.alert("Peso adicionado com sucesso");
+  }
+  else{
+    window.alert("Entrada inválida");
+  }
+  
 };
 
 export default class Homescreen extends React.Component {
@@ -70,26 +73,22 @@ export default class Homescreen extends React.Component {
 
   	handleSubmit = () => {
     	addItem(this.state.name);
-    	//Alert.alert('Item saved successfully');
+    	Alert.alert('Item saved successfully');
 	};
 
     render() {
 	    return (
 	  		<View style={styles.main}>
-	  			<Button
-                    title="Informações Pessoais"
-                    onPress={() => this.props.navigation.navigate('Informações')}
-            	/>
-		    	<Text style={styles.title}>Add Peso</Text>
+		    	<Text style={styles.title}> Adicione peso em kg </Text>
 
 		    	<TextInput style={styles.itemInput} onChange={this.handleChange} />
 
-		    	<TouchableHighlight
-			      	style={styles.button}
-			      	underlayColor="white"
-			      	onPress={this.handleSubmit}>
-			      	<Text style={styles.buttonText}>Add</Text>
-	    		</TouchableHighlight>
+          <Button   
+                    variant="contained"
+                    color="Primary" 
+                    title="Informações Pessoais"
+                    onClick={this.handleSubmit}
+                    >Adicionar</Button>
 
   			</View>
 		);
