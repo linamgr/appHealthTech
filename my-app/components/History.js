@@ -2,7 +2,7 @@ import React from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import FirebaseService from '../services/FirebaseService.js';
 import {firebaseDatabase} from '../utils/firebase';
-import { Button} from 'react-native';
+import {Button} from '@material-ui/core';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 const styles = StyleSheet.create({
@@ -15,13 +15,13 @@ const styles = StyleSheet.create({
 
 });
 
-export default class Infos extends React.Component {
+export default class MostrarHistorico extends React.Component {
     state = {
         dataList: null,
     };
 
     componentDidMount() {
-        FirebaseService.getDataList('leituras', dataIn => this.setState({dataList: dataIn}), 10);
+        FirebaseService.getDataList('leituras/key/historico', dataIn => this.setState({dataList: dataIn}), 10);
     };
 
     render() {
@@ -29,20 +29,16 @@ export default class Infos extends React.Component {
 
         return (
             <ScrollView style={styles.margin10}>
-
+    
                 <View style={styles.fullWidth}>
                     {
                         dataList && dataList.map(
                             (item, index) => {
                                 return <View style={[styles.margin10, styles.item]} key={index} >
                                     <View style={{padding:10}}>
-                                    <Text style={styles.listItemHeader}> Nome </Text>
-                                    <Text style={styles.listItemText}> {item.Nome} </Text>
-
-                                    <Text style={styles.listItemHeader}> Altura (cm) </Text>
-                                    <Text style={styles.listItemText}> {item.Altura} </Text>
-
-                                    <Text style={styles.listItemHeader}> Peso (kg) </Text>
+                                    <Text style={styles.listItemHeader}> Data </Text>
+                                    <Text style={styles.listItemText}> {item.Data} </Text>
+                                    <Text style={styles.listItemHeader}> Peso </Text>
                                     <Text style={styles.listItemText}> {item.Peso} </Text>
                                     </View>
                                 </View>
@@ -51,15 +47,8 @@ export default class Infos extends React.Component {
                     }
 
                 </View>
-                <Button
-                        title="Adicionar Peso"
-                        onPress={() => this.props.navigation.navigate('AdicionarPeso')}
-                />
-                <Button
-                        title="Mostrar Historico"
-                        onPress={() => this.props.navigation.navigate('MostrarHistorico')}
-                />
             </ScrollView>
         );
     }
-} 
+}
+

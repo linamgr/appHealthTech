@@ -3,21 +3,25 @@ import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {createAppContainer } from "react-navigation";
 import {createStackNavigator} from "react-navigation-stack";
 import AdicionarPeso from './components/HomeScreen';
-import InformaçõesScreen from './components/About';
+import Infos from './components/About';
+import MostrarHistorico from './components/History';
 
 
 export default class App extends React.Component {
   render() {
-    return <AppContainer />;
+    return <AppContainer/>;
   }
 }
 
 const AppNavigator = createStackNavigator({
-  Informações: {
-    screen: InformaçõesScreen
+  Infos: {
+    screen: Infos
   },
   AdicionarPeso: {
     screen: AdicionarPeso
+  },
+  MostrarHistorico: {
+    screen: MostrarHistorico
   }
 });
 
