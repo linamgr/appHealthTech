@@ -5,6 +5,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import WeightTrackerScreen from '../screens/WeightTrackerScreen';
+import AboutScreen from '../screens/AboutScreen';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -34,6 +35,14 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
       />
       <BottomTab.Screen
+        name="About"
+        component={AboutScreen}
+        options={{
+          title: 'User info',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+        }}
+      />
+      <BottomTab.Screen
         name="Links"
         component={LinksScreen}
         options={{
@@ -53,6 +62,8 @@ function getHeaderTitle(route) {
       return 'How to get started';
     case 'Weight':
       return 'Weight Tracker';
+    case 'About':
+      return 'User info'
     case 'Links':
       return 'Links to learn more';
   }
