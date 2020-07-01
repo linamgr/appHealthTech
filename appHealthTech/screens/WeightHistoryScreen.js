@@ -2,7 +2,6 @@ import React from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import FirebaseService from '../services/FirebaseService.js';
 import {firebaseDatabase} from '../utils/firebase';
-import {Button} from '@material-ui/core';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 const styles = StyleSheet.create({
