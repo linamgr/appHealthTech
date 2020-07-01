@@ -4,6 +4,7 @@ import * as React from 'react';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
+import ActivityMonitor from '../screens/ActivityMonitor';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -32,6 +33,13 @@ export default function BottomTabNavigator({ navigation, route }) {
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
         }}
       />
+      <BottomTab.Screen
+        name="ActivityMonitor"
+        component={ActivityMonitor}
+        options={{
+          title: "Activity Monitor",
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
+        }} />
     </BottomTab.Navigator>
   );
 }

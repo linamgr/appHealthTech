@@ -1,6 +1,8 @@
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Image, Platform, StyleSheet, Text, TouchableOpacity, View
+} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { MonoText } from '../components/StyledText';
@@ -23,7 +25,7 @@ export default function HomeScreen() {
         <View style={styles.getStartedContainer}>
           <DevelopmentModeNotice />
 
-          <Text style={styles.getStartedText}>Open up the code for this screen:</Text>
+          <Text style={styles.getStartedText}>Alo Camo:</Text>
 
           <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
             <MonoText>screens/HomeScreen.js</MonoText>
@@ -67,16 +69,17 @@ function DevelopmentModeNotice() {
     return (
       <Text style={styles.developmentModeText}>
         Development mode is enabled: your app will be slower but you can use useful development
-        tools. {learnMoreButton}
-      </Text>
-    );
-  } else {
-    return (
-      <Text style={styles.developmentModeText}>
-        You are not in development mode: your app will run at full speed.
+        tools.
+        {' '}
+        {learnMoreButton}
       </Text>
     );
   }
+  return (
+    <Text style={styles.developmentModeText}>
+      You are not in development mode: your app will run at full speed.
+    </Text>
+  );
 }
 
 function handleLearnMorePress() {

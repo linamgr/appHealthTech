@@ -6,8 +6,9 @@ export default {
     Root: {
       path: 'root',
       screens: {
-        Home: 'home',
+        ActivityMonitor: 'home',
         Links: 'links',
+        ActivityMonitor: 'activity-monitor'
       },
     },
   },
