@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import FirebaseService from '../services/FirebaseService.js';
 import {firebaseDatabase} from '../utils/firebase';
 import { Button} from 'react-native';
@@ -12,13 +12,13 @@ const styles = StyleSheet.create({
     padding: 30,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: 'white'
+    backgroundColor: '#00BBD3'
   },
   title: {
     marginBottom: 20,
     fontSize: 25,
     textAlign: 'center',
-    color:'black'
+    color:'#FFFFFF'
   },
   itemInput: {
     height: 50,
@@ -26,9 +26,10 @@ const styles = StyleSheet.create({
     marginRight: 5,
     fontSize: 23,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: 'white',
     borderRadius: 8,
-    color: 'black'
+    color: 'black',
+    backgroundColor: 'white'
   },
   buttonText: {
     fontSize: 18,
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
     padding: 70
   },
   button: {
-    height: 30,
+    height: 100,
     flexDirection: 'row',
     backgroundColor: 'white',
     borderColor: 'white',
@@ -47,6 +48,21 @@ const styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: 'auto',
     justifyContent: 'center'
+  },
+  buttonStyle: {
+    marginTop:10,
+    paddingTop:15,
+    paddingBottom:15,
+    marginLeft:30,
+    marginRight:30,
+    backgroundColor:'#F69ACC',
+    borderRadius:30,
+    borderWidth: 1,
+    borderColor: '#F69ACC'
+  },
+  textButton: {
+    color:'#FFFFFF',
+    textAlign:'center',
   }
 });
 
@@ -78,7 +94,8 @@ export default class Homescreen extends React.Component {
 
   	handleSubmit = () => {
     	addItem(this.state.name);
-	};
+  };
+  
 
     render() {
 	    return (
@@ -86,13 +103,17 @@ export default class Homescreen extends React.Component {
 	  			
 		    	<Text style={styles.title}>Adicionar peso em kg</Text>
 
-		    	<TextInput style={styles.itemInput} onChange={this.handleChange} />
+          <TextInput style={styles.itemInput}
+          placeholder="Peso(kg)"
+          onChangeText={text =>"digite o peso aqui"}
+          onChange={this.handleChange} />
 
-	    		<Button
-                    title="Adicionar Peso"
-                    onPress={this.handleSubmit}
-            	/>
-
+          <TouchableOpacity
+                    style= {styles.buttonStyle}
+                    activeOpacity = { .5 }
+                    onPress={this.handleSubmit}>
+                    <Text style={styles.textButton}> REGISTRAR </Text>
+                    </TouchableOpacity>
   			</View>
 		);
 	}

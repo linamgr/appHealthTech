@@ -8,7 +8,7 @@ export {valores_peso}
 var valores_peso = []
 
 const styles = StyleSheet.create({
-    margin10: {margin: 10},
+    margin10: {margin: 10,backgroundColor: '#00BBD3'},
     fullWidth: {flex: 1},
     header: {alignItems: 'flex-start', justifyContent: 'flex-start', height: 60, paddingTop: 20, paddingBottom: 20, flexDirection: 'row'},
     listItemText: {fontSize: 20, color: '#000000', marginBottom:10},
