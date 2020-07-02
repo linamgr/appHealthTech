@@ -20,7 +20,7 @@
     "@react-navigation/stack": "^5.2.16",
     "acorn": "^7.3.1",
     "eslint-plugin-react-hooks": "^4.0.5",
-    "expo": "^37.0.12",
+    "expo": "^38.0.8",
     "expo-asset": "~8.1.0",
     "expo-constants": "~9.0.0",
     "expo-font": "~8.1.0",
@@ -37,7 +37,7 @@
     "react-native-screens": "~2.2.0",
     "react-native-web": "~0.11.7",
     "react-navigation": "^4.4.0",
-    "react-plotly.js": "^2.4.0"
+    "react-plotly.js": "^2.4.0",
     "watchman": "^1.0.0"
   },
   "devDependencies": {
