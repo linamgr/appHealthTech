@@ -5,6 +5,7 @@ import {createStackNavigator} from "react-navigation-stack";
 import AdicionarPeso from './components/HomeScreen';
 import Infos from './components/About';
 import MostrarHistorico from './components/History';
+import AdicionarMetas from './components/Goals';
 
 
 export default class App extends React.Component {
@@ -22,6 +23,9 @@ const AppNavigator = createStackNavigator({
   },
   MostrarHistorico: {
     screen: MostrarHistorico
+  },
+  AdicionarMetas: {
+    screen: AdicionarMetas
   }
 });
 

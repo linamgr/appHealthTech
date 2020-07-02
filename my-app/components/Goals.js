@@ -5,6 +5,8 @@ import {firebaseDatabase} from '../utils/firebase';
 import { Button} from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
+var peso, altura, imc;
+
 const styles = StyleSheet.create({
     margin10: {margin: 10},
     fullWidth: {flex: 1},
@@ -34,18 +36,28 @@ export default class Infos extends React.Component {
                     {
                         dataList && dataList.map(
                             (item, index) => {
+
+                              /* Calculo imc */
+                              peso = parseFloat(item.Peso);
+                              altura = parseFloat(item.Altura);
+                              altura = altura * altura * 0.0001;
+                              imc =  peso /  altura;
+                              imc = parseFloat(imc.toFixed(2))
+
                                 return <View style={[styles.margin10, styles.item]} key={index} >
                                     <View style={{padding:10}}>
-                                    <Text style={styles.listItemHeader}> Nome </Text>
-                                    <Text style={styles.listItemText}> {item.Nome} </Text>
+                                    <Text style={styles.listItemHeader}> Peso Atual </Text>
+                                    <Text style={styles.listItemText}> {item.Peso} Kg </Text>
 
-                                    <Text style={styles.listItemHeader}> Altura (cm) </Text>
-                                    <Text style={styles.listItemText}> {item.Altura} </Text>
-
-                                    <Text style={styles.listItemHeader}> Peso (kg) </Text>
-                                    <Text style={styles.listItemText}> {item.Peso} </Text>
+                                    <Text style={styles.listItemHeader}> Meta de Peso </Text>
+                                    <Text style={styles.listItemText}> 70.0 Kg </Text>
+                                    
+                                    <Text style={styles.listItemHeader}> IMC </Text> 
+                                    <Text style={styles.listItemText}> {imc} </Text>
+                                    <Text style={styles.listItemText}> Obs.um IMC entre 18,5 e 24,9 é considerado normal  </Text>
                                     </View>
                                 </View>
+                               
                             }
                         )
                     }
