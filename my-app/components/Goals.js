@@ -4,8 +4,10 @@ import FirebaseService from '../services/FirebaseService.js';
 import {firebaseDatabase} from '../utils/firebase';
 import { Button} from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
+import Plot from 'react-plotly.js';
 
 var peso, altura, imc;
+var eixo_y= [];
 
 const styles = StyleSheet.create({
     margin10: {margin: 10},
@@ -61,7 +63,19 @@ export default class Infos extends React.Component {
                             }
                         )
                     }
-
+                <Plot
+            data={[
+              {
+                x: [1, 2, 3],
+                y: [2, 6, 3],
+                type: 'scatter',
+                mode: 'lines+markers',
+                marker: {color: 'red'},
+              },
+              {type: 'bar', x: [1, 2, 3], y: [2, 5, 3]},
+            ]}
+            layout={ {width: 320, height: 240, title: 'A Fancy Plot'} }
+            />
                 </View>
                 <Button
                         title="Adicionar Peso"
@@ -75,6 +89,7 @@ export default class Infos extends React.Component {
                         title="Metas"
                         onPress={() => this.props.navigation.navigate('AdicionarMetas')}
                 />
+
             </ScrollView>
         );
     }
