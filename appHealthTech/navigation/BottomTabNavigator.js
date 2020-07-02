@@ -9,7 +9,7 @@ import WeightHistoryScreen from '../screens/WeightHistoryScreen';
 import AboutScreen from '../screens/AboutScreen';
 
 const BottomTab = createBottomTabNavigator();
-const INITIAL_ROUTE_NAME = 'Goals';
+const INITIAL_ROUTE_NAME = 'Weight History';
 
 export default function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
