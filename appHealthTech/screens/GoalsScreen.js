@@ -11,12 +11,12 @@ var peso, altura, imc;
 var eixo_x = [ ];
 
 const styles = StyleSheet.create({
-    margin10: {margin: 10,backgroundColor: '#00BBD3'},
+    margin10: {margin: 10,backgroundColor: '#52b1cf'},
     fullWidth: {flex: 1},
     header: {alignItems: 'flex-start', justifyContent: 'flex-start', height: 60, paddingTop: 20, paddingBottom: 20, flexDirection: 'row'},
     listItemText: {fontSize: 20, color: '#000000', marginBottom:10},
-    itemIMChigh: {fontSize: 20, color: 'red', marginBottom:10},
-    itemIMClow: { color: '#4DC902', marginBottom:10,  fontStyle:'Bold', fontSize:50},
+    itemIMChigh: {color: 'red', marginBottom:10,  fontStyle:'normal',fontWeight:'Bold', fontSize:50, textAlign: 'center'},
+    itemIMClow: { color: '#4DC902', marginBottom:10,  fontStyle:'normal',fontWeight:'Bold', fontSize:"50px", textAlign: 'center'},
     listItemHeader: {fontSize: 15, color: '#0000FF'},
     item: {backgroundColor: '#F6F6F6', borderRadius: 20},
     monitorador: {marginTop:10,
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         marginLeft:30,
         marginRight:30,
         backgroundColor:'#F69ACC',
-        alignItems:'left'
+
     },
     calculador:{
         paddingTop:15,
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         marginLeft:30,
         marginRight:30,
         backgroundColor:'#00BBD3',
-        alignItems:'left'
+
     },
     buttonStyle: {
         marginTop:10,
@@ -48,7 +48,12 @@ const styles = StyleSheet.create({
       },
       textButton: {
         color:'#FFFFFF',
+        textAlign:'center'
+      },
+      text: {
+        color:'#FFFFFF',
         textAlign:'center',
+        fontSize:25
       }
 });
 
@@ -66,18 +71,21 @@ export default class Infos extends React.Component {
 
         return (
             <ScrollView style={styles.margin10}>
-                <TouchableOpacity
-                    style= {styles.monitorador}
-                    activeOpacity = { .5 }
-                    onPress={() => this.props.navigation.navigate('AdicionarPeso')}>
-                    <Text style={styles.textButton}> Monitorador </Text>
-                    </TouchableOpacity>
-                <TouchableOpacity
-                    style= {styles.calculador}
-                    activeOpacity = { .5 }
-                    onPress={() => this.props.navigation.navigate('AdicionarPeso')}>
-                    <Text style={styles.textButton}> Calculadora de IMC </Text>
-                    </TouchableOpacity>
+                <View style={{ flexDirection:'row', alignItems:'flex-end',}}>
+                    <TouchableOpacity
+                        style= {styles.monitorador}
+                        activeOpacity = { .5 }
+                        onPress={() => this.props.navigation.navigate('AdicionarPeso')}>
+                        <Text style={styles.textButton}> Monitorador </Text>
+                        </TouchableOpacity>
+                    <TouchableOpacity
+                        style= {styles.calculador}
+                        activeOpacity = { .5 }
+                        onPress={() => this.props.navigation.navigate('AdicionarPeso')}>
+                        <Text style={styles.textButton}> Calculadora de IMC </Text>
+                        </TouchableOpacity>
+                        </View>
+                <Text style={styles.text} >Indice de massa corporal</Text>
                 <View style={styles.fullWidth}>
                     {   
 
@@ -94,33 +102,18 @@ export default class Infos extends React.Component {
                               for(var i = 0; i < valores_peso.length ; i++){
                                 eixo_x.push(i);
                               }
-
+                
                               if (imc >=25) {
                                 return <View style={[styles.margin10, styles.item]} key={index} >
                                 <View style={{padding:10}}>
-                                <Text style={styles.listItemHeader}> Peso Atual </Text>
-                                <Text style={styles.listItemText}> {item.Peso} Kg </Text>
-
-                                <Text style={styles.listItemHeader}> Meta de Peso </Text>
-                                <Text style={styles.listItemText}> 70.0 Kg </Text>
-                                
-                                <Text style={styles.listItemHeader}> IMC </Text> 
                                 <Text style={styles.itemIMChigh}> {imc} </Text>
-                                <Text style={styles.listItemText}> Obs.um IMC entre 18,5 e 24,9 é considerado normal  </Text>
+
                                 </View>
                             </View>
                               } else {
                                 return <View style={[styles.margin10, styles.item]} key={index} >
                                 <View style={{padding:10}}>
-                                <Text style={styles.listItemHeader}> Peso Atual </Text>
-                                <Text style={styles.listItemText}> {item.Peso} Kg </Text>
-
-                                <Text style={styles.listItemHeader}> Meta de Peso </Text>
-                                <Text style={styles.listItemText}> 70.0 Kg </Text>
-                                
-                                <Text style={styles.listItemHeader}> IMC </Text> 
                                 <Text style={styles.itemIMClow}> {imc} </Text>
-                                <Text style={styles.listItemText}> Obs.um IMC entre 18,5 e 24,9 é considerado normal  </Text>
                                 </View>
                             </View>
                               }
@@ -141,7 +134,7 @@ export default class Infos extends React.Component {
                     },
                     {type: 'bar', x: eixo_x, y: valores_peso},
                   ]}
-                  layout={ {width: 500, height: 500, title: 'Evolução no Tempo',backgroundColor:"#C7DDC5"} }
+                  layout={ {width: 338, height: 203,backgroundColor:"#C7DDC5"} }
             />
                 </View>
                 <TouchableOpacity
@@ -150,15 +143,7 @@ export default class Infos extends React.Component {
                     onPress={() => this.props.navigation.navigate('AdicionarPeso')}>
                     <Text style={styles.textButton}> ADICIONAR PESO </Text>
                     </TouchableOpacity>
-
-                <Button
-                        title="Mostrar Historico"
-                        onPress={() => this.props.navigation.navigate('MostrarHistorico')}
-                />
-                <Button
-                        title="Metas"
-                        onPress={() => this.props.navigation.navigate('AdicionarMetas')}
-                />
+               
 
             </ScrollView>
         );

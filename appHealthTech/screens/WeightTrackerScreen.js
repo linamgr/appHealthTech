@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     padding: 30,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#00BBD3'
+    backgroundColor: '#52b1cf'
   },
   title: {
     marginBottom: 20,
@@ -101,7 +101,7 @@ export default class Homescreen extends React.Component {
 	    return (
 	  		<View style={styles.main}>
 	  			
-		    	<Text style={styles.title}>Adicionar peso em kg</Text>
+		    	<Text style={styles.title}>Insira aqui o peso desejado</Text>
 
           <TextInput style={styles.itemInput}
           placeholder="Peso(kg)"
