@@ -5,9 +5,10 @@ import {firebaseDatabase} from '../utils/firebase';
 import { Button} from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Plot from 'react-plotly.js';
+import { valores_peso } from './History'
 
 var peso, altura, imc;
-var eixo_y= [];
+var eixo_x = [ ];
 
 const styles = StyleSheet.create({
     margin10: {margin: 10},
@@ -46,6 +47,10 @@ export default class Infos extends React.Component {
                               imc =  peso /  altura;
                               imc = parseFloat(imc.toFixed(2))
 
+                              for(var i = 0; i < valores_peso.length ; i++){
+                                eixo_x.push(i);
+                              }
+
                                 return <View style={[styles.margin10, styles.item]} key={index} >
                                     <View style={{padding:10}}>
                                     <Text style={styles.listItemHeader}> Peso Atual </Text>
@@ -64,17 +69,17 @@ export default class Infos extends React.Component {
                         )
                     }
                 <Plot
-            data={[
-              {
-                x: [1, 2, 3],
-                y: [2, 6, 3],
-                type: 'scatter',
-                mode: 'lines+markers',
-                marker: {color: 'red'},
-              },
-              {type: 'bar', x: [1, 2, 3], y: [2, 5, 3]},
-            ]}
-            layout={ {width: 320, height: 240, title: 'A Fancy Plot'} }
+                  data={[
+                    {
+                      x: eixo_x,
+                      y: valores_peso,
+                      type: 'scatter',
+                      mode: 'lines+markers',
+                      marker: {color: 'red'},
+                    },
+                    {type: 'bar', x: eixo_x, y: valores_peso},
+                  ]}
+                  layout={ {width: 500, height: 500, title: 'Evolução no Tempo'} }
             />
                 </View>
                 <Button

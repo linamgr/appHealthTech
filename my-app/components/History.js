@@ -4,6 +4,9 @@ import FirebaseService from '../services/FirebaseService.js';
 import {firebaseDatabase} from '../utils/firebase';
 import {Button} from '@material-ui/core';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
+export {valores_peso};
+
+var valores_peso = []
 
 const styles = StyleSheet.create({
     margin10: {margin: 10},
@@ -22,6 +25,7 @@ export default class MostrarHistorico extends React.Component {
 
     componentDidMount() {
         FirebaseService.getDataList('leituras/key/historico', dataIn => this.setState({dataList: dataIn}), 10);
+        valores_peso = [];
     };
 
     render() {
@@ -34,6 +38,7 @@ export default class MostrarHistorico extends React.Component {
                     {
                         dataList && dataList.map(
                             (item, index) => {
+                                valores_peso.push(item.Peso);
                                 return <View style={[styles.margin10, styles.item]} key={index} >
                                     <View style={{padding:10}}>
                                     <Text style={styles.listItemHeader}> Data </Text>
@@ -51,4 +56,6 @@ export default class MostrarHistorico extends React.Component {
         );
     }
 }
+
+
 
