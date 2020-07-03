@@ -16,14 +16,18 @@ const styles = StyleSheet.create({
   },
   title: {
     marginBottom: 20,
-    fontSize: 25,
+    fontSize: 14,
+    fontWeight: 'Bold',
     textAlign: 'center',
     color:'#FFFFFF'
   },
   itemInput: {
+    width: 282,
+    height: 38,
     height: 50,
     padding: 4,
-    marginRight: 5,
+    marginRight: 66.5,
+    marginTop: 10,
     fontSize: 23,
     borderWidth: 1,
     borderColor: 'white',
@@ -50,7 +54,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   buttonStyle: {
-    marginTop:10,
+    marginTop:109,
     paddingTop:15,
     paddingBottom:15,
     marginLeft:30,
@@ -93,7 +97,8 @@ export default class Homescreen extends React.Component {
 
 
   	handleSubmit = () => {
-    	addItem(this.state.name);
+      addItem(this.state.name);
+      this.props.navigation.navigate('Goals');
   };
   
 

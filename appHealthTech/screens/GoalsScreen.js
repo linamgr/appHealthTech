@@ -11,28 +11,28 @@ var peso, altura, imc;
 var eixo_x = [ ];
 
 const styles = StyleSheet.create({
-    margin10: {margin: 10,backgroundColor: '#52b1cf'},
+    margin10: {backgroundColor: '#52b1cf'},
     fullWidth: {flex: 1},
     header: {alignItems: 'flex-start', justifyContent: 'flex-start', height: 60, paddingTop: 20, paddingBottom: 20, flexDirection: 'row'},
     listItemText: {fontSize: 20, color: '#000000', marginBottom:10},
     itemIMChigh: {color: 'red', marginBottom:10,  fontStyle:'normal',fontWeight:'Bold', fontSize:50, textAlign: 'center'},
-    itemIMClow: { color: '#4DC902', marginBottom:10,  fontStyle:'normal',fontWeight:'Bold', fontSize:"50px", textAlign: 'center'},
+    itemIMClow: { color: '#4DC902', marginBottom:10,  fontStyle:'normal',fontWeight:'Bold', fontSize:50, textAlign: 'center'},
     listItemHeader: {fontSize: 15, color: '#0000FF'},
-    item: {backgroundColor: '#F6F6F6', borderRadius: 20},
-    monitorador: {marginTop:10,
+    item: {margin: 10,backgroundColor: '#F6F6F6', borderRadius: 20},
+    monitorador: {
         paddingTop:15,
         paddingBottom:15,
-        marginLeft:30,
-        marginRight:30,
-        backgroundColor:'#F69ACC',
+        width:180,
+        height:48,
+        backgroundColor:'#00BBD3',
 
     },
     calculador:{
         paddingTop:15,
         paddingBottom:15,
-        marginLeft:30,
-        marginRight:30,
-        backgroundColor:'#00BBD3',
+        width:180,
+        height:48,
+        backgroundColor:'#F69ACC',
 
     },
     buttonStyle: {
@@ -48,12 +48,16 @@ const styles = StyleSheet.create({
       },
       textButton: {
         color:'#FFFFFF',
-        textAlign:'center'
+        textAlign:'center',
+        fontWeight:'Bold',
+        fontSize: 18,
+        textAlign: 'center'
       },
       text: {
         color:'#FFFFFF',
         textAlign:'center',
-        fontSize:25
+        fontWeight:'Bold',
+        fontSize:21
       }
 });
 
@@ -61,6 +65,7 @@ export default class Infos extends React.Component {
     state = {
         dataList: null,
     };
+    title = 'GOALS'
 
     componentDidMount() {
         FirebaseService.getDataList('leituras', dataIn => this.setState({dataList: dataIn}), 10);
@@ -68,20 +73,21 @@ export default class Infos extends React.Component {
 
     render() {
         const {dataList} = this.state;
+        const {option} = this.title;
 
         return (
             <ScrollView style={styles.margin10}>
-                <View style={{ flexDirection:'row', alignItems:'flex-end',}}>
+                <View style={{ flexDirection:'row', alignItems:'center',}}>
                     <TouchableOpacity
                         style= {styles.monitorador}
                         activeOpacity = { .5 }
-                        onPress={() => this.props.navigation.navigate('AdicionarPeso')}>
+                        onPress={() => this.props.navigation.navigate('Graphic')}>
                         <Text style={styles.textButton}> Monitorador </Text>
                         </TouchableOpacity>
                     <TouchableOpacity
                         style= {styles.calculador}
                         activeOpacity = { .5 }
-                        onPress={() => this.props.navigation.navigate('AdicionarPeso')}>
+                        onPress={() => this.props.navigation.navigate('Goals')}>
                         <Text style={styles.textButton}> Calculadora de IMC </Text>
                         </TouchableOpacity>
                         </View>
@@ -122,27 +128,10 @@ export default class Infos extends React.Component {
                             }
                         )
                     }
-                <Plot
-                    backgroundColor= "#C7DDC5"
-                  data={[
-                    {
-                      x: eixo_x,
-                      y: valores_peso,
-                      type: 'scatter',
-                      mode: 'lines',
-                      marker: {color: 'red'},
-                    },
-                    {type: 'bar', x: eixo_x, y: valores_peso},
-                  ]}
-                  layout={ {width: 338, height: 203,backgroundColor:"#C7DDC5"} }
-            />
+                
+                
                 </View>
-                <TouchableOpacity
-                    style= {styles.buttonStyle}
-                    activeOpacity = { .5 }
-                    onPress={() => this.props.navigation.navigate('AdicionarPeso')}>
-                    <Text style={styles.textButton}> ADICIONAR PESO </Text>
-                    </TouchableOpacity>
+                
                
 
             </ScrollView>
