@@ -7,7 +7,7 @@ import LinksScreen from '../screens/LinksScreen';
 import ActivityMonitor from '../screens/ActivityMonitor';
 
 const BottomTab = createBottomTabNavigator();
-const INITIAL_ROUTE_NAME = 'Home';
+const INITIAL_ROUTE_NAME = 'Activity Monitor';
 
 export default function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
@@ -34,7 +34,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
       />
       <BottomTab.Screen
-        name="ActivityMonitor"
+        name="activity-monitor"
         component={ActivityMonitor}
         options={{
           title: "Activity Monitor",
@@ -52,5 +52,7 @@ function getHeaderTitle(route) {
       return 'How to get started';
     case 'Links':
       return 'Links to learn more';
+    case 'Activity Monitor':
+      return 'Monitor de atividades';
   }
 }

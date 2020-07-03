@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    Image, Platform, StyleSheet, Text, TouchableOpacity, View
+    Image, Platform, StyleSheet, Text, TouchableOpacity, View, SafeAreaView
   } from 'react-native';
 
 import PedometerComponent from  '../components/Tracking/PedometerComponent';
@@ -17,17 +17,17 @@ export default function ActivityMonitor() {
 
 const styles = StyleSheet.create({
     activityMonitorContainer: {
-        flex: 1,
-        backgroundColor: 'lightgreen',
+        display: "flex",
+        backgroundColor: 'white',
+        minHeight: "100%",
         alignItems: 'center',
         justifyContent: 'center',
         paddingTop: 10,
-        paddingLeft: 10,
-        paddingRight: 10,
         paddingBottom: 10
     },
     title: {
-        color: 'red',
+        // fontSize: "1.6em",
+        fontSize: 18,
         textAlign: 'center'
     }
 })
