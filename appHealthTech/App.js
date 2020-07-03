@@ -22,7 +22,7 @@ export default function App(props) {
       {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
       <NavigationContainer linking={LinkingConfiguration}>
         <Stack.Navigator>
-          <Stack.Screen name="Root" component={BottomTabNavigator} />
+          <Stack.Screen name="Monitor de Atividade" component={BottomTabNavigator} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>
