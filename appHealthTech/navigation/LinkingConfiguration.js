@@ -4,10 +4,11 @@ export default {
   prefixes: [Linking.makeUrl('/')],
   config: {
     Root: {
-      path: 'root',
+      path: 'activity-monitor',
       screens: {
-        Home: 'home',
+        ActivityMonitor: 'home',
         Links: 'links',
+        ActivityMonitor: 'activity-monitor'
       },
     },
   },
