@@ -5,6 +5,7 @@ import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
 import ScreenNavigator from './ScreenNavigator';
+import HomeScreen from '../screens/HomeScreen';
 
 
 const BottomTab = createBottomTabNavigator();
@@ -20,15 +21,16 @@ export default function BottomTabNavigator({ navigation, route }) {
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME} >
       <BottomTab.Screen
-        name="WaterTabNav"
-        component={ScreenNavigator}
+        name="Home"
+        component={HomeScreen}
         options={{
           title: 'Home',
+          tabBarVisible: false,
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-home" />,
         }}
       />
       <BottomTab.Screen
-        name="Links"
+        name="WaterTabNav"
         component={ScreenNavigator}
         options={{
           title: 'Lembretes',
