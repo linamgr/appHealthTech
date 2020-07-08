@@ -79,60 +79,52 @@ export default class Infos extends React.Component {
                     <TouchableOpacity
                         style= {styles.monitorador}
                         activeOpacity = { .5 }
-                        onPress={() => this.props.navigation.navigate('Graphic')}>
+                        onPress={() => this.props.navigation.navigate('Goals')}>
                         <Text style={styles.textButton}> Monitorador </Text>
-                        </TouchableOpacity>
+                    </TouchableOpacity>
                     <TouchableOpacity
                         style= {styles.calculador}
                         activeOpacity = { .5 }
-                        onPress={() => this.props.navigation.navigate('Goals')}>
+                        onPress={() => {}}>
                         <Text style={styles.textButton}> IMC </Text>
-                        </TouchableOpacity>
-                        </View>
-                <View style={styles.fullWidth}>
-                    {
-
-                        dataList && dataList.map(
-                            (item, index) => {
-
-                              /* Calculo imc */
-                              peso = parseFloat(item.Peso);
-                              altura = parseFloat(item.Altura);
-                              altura = altura * altura * 0.0001;
-                              imc =  peso /  altura;
-                              imc = parseFloat(imc.toFixed(2))
-
-                              for(var i = 0; i < valores_peso.length ; i++){
-                                eixo_x.push(i);
-                              }
-
-
-
-
-                            }
-                        )
-                    }
-                <Plot
-                    backgroundColor= "#C7DDC5"
-                  data={[
-                    {
-                      x: eixo_x,
-                      y: valores_peso,
-                      type: 'scatter',
-                      mode: 'lines',
-                      marker: {color: 'red'},
-                    },
-                    {type: 'bar', x: eixo_x, y: valores_peso},
-                  ]}
-                  layout={ {width: 338, height: 203,backgroundColor:"#C7DDC5"} }
-            />
-                </View>
-                <TouchableOpacity
-                    style= {styles.buttonStyle}
-                    activeOpacity = { .5 }
-                    onPress={() => this.props.navigation.navigate('AdicionarPeso')}>
-                    <Text style={styles.textButton}> ADICIONAR PESO </Text>
                     </TouchableOpacity>
+                </View>
+                <Text style={styles.text} >Indice de massa corporal</Text>
+                <View style={styles.fullWidth}>
+                {
+                    dataList && dataList.map(
+                        (item, index) => {
+
+                          /* Calculo imc */
+                          peso = parseFloat(item.Peso);
+                          altura = parseFloat(item.Altura);
+                          altura = altura * altura * 0.0001;
+                          imc =  peso /  altura;
+                          imc = parseFloat(imc.toFixed(2))
+
+                          for(var i = 0; i < valores_peso.length ; i++){
+                            eixo_x.push(i);
+                          }
+
+                          if (imc >=25) {
+                            return <View style={[styles.margin10, styles.item]} key={index} >
+                            <View style={{padding:10}}>
+                                <Text style={styles.itemIMChigh}> {imc} </Text>
+                            </View>
+                        </View>
+                          } else {
+                            return <View style={[styles.margin10, styles.item]} key={index} >
+                            <View style={{padding:10}}>
+                            <Text style={styles.itemIMClow}> {imc} </Text>
+                            </View>
+                        </View>
+                          }
+
+
+                        }
+                    )
+                }
+                </View>
 
 
             </ScrollView>
