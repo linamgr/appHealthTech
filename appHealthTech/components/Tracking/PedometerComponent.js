@@ -2,6 +2,7 @@ import React from 'react';
 import { Pedometer } from 'expo-sensors';
 import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 import DataModule  from "./DataModule";
+import * as firebase from '../../FirebaseIntegration/firebase';
 
 export default class PedometerComponent extends React.Component {
 
@@ -16,7 +17,7 @@ export default class PedometerComponent extends React.Component {
   };
 
   componentDidMount() {
-
+    firebase.readDataOnce('users');
   }
   
   activityTimerTick = () => {
