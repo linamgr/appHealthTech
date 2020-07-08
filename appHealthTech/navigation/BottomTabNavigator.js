@@ -51,14 +51,6 @@ export default function BottomTabNavigator({ navigation, route }) {
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
         }}
       />
-      <BottomTab.Screen
-        name="Links"
-        component={LinksScreen}
-        options={{
-          title: 'Resources',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
-        }}
-      />
     </BottomTab.Navigator>
   );
 }
@@ -68,14 +60,12 @@ function getHeaderTitle(route) {
 
   switch (routeName) {
     case 'Goals':
-      return 'See your stats and goals';
+      return 'Rastreador de Metas de Saúde';
     case 'Weight':
       return 'Weight Tracker';
     case 'Weight History':
       return 'Weight History';
     case 'About':
       return 'User info'
-    case 'Links':
-      return 'Links to learn more';
   }
 }
