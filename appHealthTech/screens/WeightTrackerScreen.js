@@ -22,11 +22,9 @@ const styles = StyleSheet.create({
     color:'#FFFFFF'
   },
   itemInput: {
-    width: 282,
     height: 38,
     height: 50,
     padding: 4,
-    marginRight: 66.5,
     marginTop: 10,
     fontSize: 23,
     borderWidth: 1,
@@ -85,7 +83,7 @@ let addItem = item => {
   else{
     window.alert("Entrada inválida");
   }
-  
+
 };
 
 export default class Homescreen extends React.Component {
@@ -100,12 +98,12 @@ export default class Homescreen extends React.Component {
       addItem(this.state.name);
       this.props.navigation.navigate('Goals');
   };
-  
+
 
     render() {
 	    return (
 	  		<View style={styles.main}>
-	  			
+
 		    	<Text style={styles.title}>Insira aqui o peso desejado</Text>
 
           <TextInput style={styles.itemInput}
@@ -117,7 +115,7 @@ export default class Homescreen extends React.Component {
                     style= {styles.buttonStyle}
                     activeOpacity = { .5 }
                     onPress={this.handleSubmit}>
-                    <Text style={styles.textButton}> REGISTRAR </Text>
+                    <Text style={styles.textButton}> Registrar Meta </Text>
                     </TouchableOpacity>
   			</View>
 		);
