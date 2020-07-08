@@ -35,24 +35,37 @@ const styles = StyleSheet.create({
 
     },
     buttonStyle: {
-        marginTop:10,
+        marginTop:15,
         paddingTop:15,
         paddingBottom:15,
+        width: 300,
         marginLeft:30,
         marginRight:30,
         backgroundColor:'#F69ACC',
         borderRadius:30,
         borderWidth: 1,
         borderColor: '#F69ACC'
-      },
-      textButton: {
+    },
+    buttonStyle1: {
+        marginTop:30,
+        paddingTop:15,
+        paddingBottom:15,
+        width: 200,
+        marginLeft:30,
+        marginRight:30,
+        backgroundColor:'#C4C4C4',
+        borderRadius:30,
+        borderWidth: 1,
+        borderColor: '#C4C4C4'
+    },
+    textButton: {
         color:'#FFFFFF',
         textAlign:'center',
         fontWeight:'Bold',
         fontSize: 18,
         textAlign: 'center'
-      },
-      text: {
+    },
+    text: {
         color:'#FFFFFF',
         textAlign:'center',
         fontWeight:'Bold',
@@ -73,12 +86,11 @@ const styles = StyleSheet.create({
       backgroundColor: 'white'
     },
     title: {
-      marginBottom: 20,
-      fontSize: 14,
+      fontSize: 16,
       fontWeight: 'Bold',
       textAlign: 'center',
       color:'#FFFFFF'
-  },
+    },
     grafico: {
         flex: 1,
         alignItems: 'center',
@@ -191,19 +203,21 @@ export default class Infos extends React.Component {
                             onChange={this.handleChange} />
 
                         <TouchableOpacity
-                                  style= {styles.buttonStyle}
-                                  activeOpacity = { .5 }
-                                  onPress={this.handleSubmit}>
-                                  <Text style={styles.textButton}> Adicionar Peso </Text>
+                            style= {styles.buttonStyle}
+                            activeOpacity = { .5 }
+                            onPress={this.handleSubmit}>
+                            <Text style={styles.textButton}> Adicionar Peso </Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            style= {styles.buttonStyle1}
+                            activeOpacity = { .5 }
+                            onPress={() => this.props.navigation.navigate('AdicionarPeso')}>
+                            <Text style={styles.textButton}> Alterar Meta </Text>
                         </TouchableOpacity>
                     </View>
 
-                    <TouchableOpacity
-                        style= {styles.buttonStyle}
-                        activeOpacity = { .5 }
-                        onPress={() => this.props.navigation.navigate('AdicionarPeso')}>
-                        <Text style={styles.textButton}> Alterar Meta </Text>
-                    </TouchableOpacity>
+
 
             </ScrollView>
         );
