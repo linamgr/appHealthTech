@@ -13,12 +13,40 @@ var eixo_x = [ ];
 const styles = StyleSheet.create({
     margin10: {backgroundColor: '#52b1cf'},
     fullWidth: {flex: 1},
-    header: {alignItems: 'flex-start', justifyContent: 'flex-start', height: 60, paddingTop: 20, paddingBottom: 20, flexDirection: 'row'},
-    listItemText: {fontSize: 20, color: '#000000', marginBottom:10},
-    itemIMChigh: {color: 'red', marginBottom:10,  fontStyle:'normal',fontWeight:'Bold', fontSize:50, textAlign: 'center'},
-    itemIMClow: { color: '#4DC902', marginBottom:10,  fontStyle:'normal',fontWeight:'Bold', fontSize:50, textAlign: 'center'},
+    header: {
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        height: 60,
+        paddingTop: 20,
+        paddingBottom: 20,
+        flexDirection: 'row'
+    },
+    listItemText: {fontSize: 20,
+        color: '#000000',
+        marginBottom:10
+    },
+    itemIMChigh: {
+        color: 'red',
+        fontStyle:'normal',
+        fontWeight:'Bold',
+        fontSize:50,
+        textAlign: 'center'
+    },
+    itemIMClow: {
+        color: '#4DC902',
+        fontStyle:'normal',
+        fontWeight:'Bold',
+        fontSize:50,
+        textAlign: 'center',
+        width: 100
+    },
     listItemHeader: {fontSize: 15, color: '#0000FF'},
-    item: {backgroundColor: '#F6F6F6', borderRadius: 20},
+    item: {
+        backgroundColor: '#F6F6F6',
+        borderRadius: 20,
+        width: 300,
+        alignItems: 'center'
+    },
     monitorador: {
         paddingTop:15,
         paddingBottom:15,
@@ -51,13 +79,14 @@ const styles = StyleSheet.create({
         textAlign:'center',
         fontWeight:'Bold',
         fontSize: 18,
-        textAlign: 'center'
       },
       text: {
         color:'#FFFFFF',
         textAlign:'center',
         fontWeight:'Bold',
-        fontSize:21
+        fontSize:21,
+        marginTop: 15,
+        marginBottom: 10
       }
 });
 
@@ -90,7 +119,7 @@ export default class Infos extends React.Component {
                     </TouchableOpacity>
                 </View>
                 <Text style={styles.text} >Indice de massa corporal</Text>
-                <View style={styles.fullWidth}>
+                <View style={[styles.fullWidth, {alignItems:'center'}]}>
                 {
                     dataList && dataList.map(
                         (item, index) => {
@@ -108,16 +137,13 @@ export default class Infos extends React.Component {
 
                           if (imc >=25) {
                             return <View style={[styles.margin10, styles.item]} key={index} >
-                            <View style={{padding:10}}>
                                 <Text style={styles.itemIMChigh}> {imc} </Text>
                             </View>
-                        </View>
                           } else {
                             return <View style={[styles.margin10, styles.item]} key={index} >
-                            <View style={{padding:10}}>
+
                             <Text style={styles.itemIMClow}> {imc} </Text>
                             </View>
-                        </View>
                           }
 
 
