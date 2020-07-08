@@ -3,20 +3,20 @@ import {
     Image, Platform, StyleSheet, Text, TouchableOpacity, View, SafeAreaView
   } from 'react-native';
 
-import PedometerComponent from  '../components/Tracking/PedometerComponent';
+import ListComponent from  '../components/Tracking/ListComponent';
 
-export default function ActivityMonitor() {
+export default function ListMonitor() {
 
     return(
-        <View style={styles.activityMonitorContainer}>
-            <Text style={styles.title}>Atividade Atual</Text>
-            <PedometerComponent />
+        <View style={styles.listMonitorContainer}>
+            <Text style={styles.title}>Lista de Atividades</Text>
+            <ListComponent/>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    activityMonitorContainer: {
+    listMonitorContainer: {
         display: "flex",
         backgroundColor: 'white',
         minHeight: "100%",
@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#52B1CF',
     },
     title: {
-        // fontSize: "1.6em",
         fontSize: 18,
         textAlign: 'center',
         color: "white",

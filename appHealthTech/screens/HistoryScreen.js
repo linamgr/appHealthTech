@@ -3,20 +3,20 @@ import {
     Image, Platform, StyleSheet, Text, TouchableOpacity, View, SafeAreaView
   } from 'react-native';
 
-import PedometerComponent from  '../components/Tracking/PedometerComponent';
+import HistoryComponent from  '../components/Tracking/HistoryComponent';
 
-export default function ActivityMonitor() {
+export default function HistoryMonitor() {
 
     return(
-        <View style={styles.activityMonitorContainer}>
-            <Text style={styles.title}>Atividade Atual</Text>
-            <PedometerComponent />
+        <View style={styles.historyMonitorContainer}>
+            <Text style={styles.title}>Histórico de Atividades</Text>
+            <HistoryComponent/>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    activityMonitorContainer: {
+    historyMonitorContainer: {
         display: "flex",
         backgroundColor: 'white',
         minHeight: "100%",

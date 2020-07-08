@@ -1,37 +1,50 @@
 import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import TabBarIcon from '../TabBarIcon';
 
 export default function DataModule(props) {
   return(
     <View style={styles.pedometerData}>
-      <Text style={styles.pedometerText}>{props.Text}</Text>
-      <Text style={styles.pedometerValue}>{props.Data}</Text>
+      <TabBarIcon name={props.img} style={styles.pedometerIcon} />
+      <View style={styles.pedometerTextContainer}>
+        <Text style={styles.pedometerText}>{props.Text}</Text>
+        <Text style={styles.pedometerValue}>{props.Data}</Text>
+      </View>
     </View>
   );
 }
   
 const styles = StyleSheet.create({
   pedometerData: {
-    width: 100,
-    height: 100,
-    justifyContent: 'center',
-    borderRadius: 50,  
-    backgroundColor: '#add8e6',
-    marginTop: 20,
-    marginBottom: 20,
-    marginLeft: 10,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    width: 200,
+    height: 50,
+    borderRadius: 50,
+    justifyContent: "space-around",
+    backgroundColor: 'white',
+    marginTop: 0,
+    marginBottom: 10,
+    marginLeft: 150,
     marginRight: 10,
-    textAlign: 'center'
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.5 ,
+    shadowRadius: 2,
+    elevation: 5,
+    // borderWidth: 1,
+    // borderStyle: "solid",
+    // borderColor: "red"
+  },
+  pedometerTextContainer: {
+    width: '50%',
   },
   pedometerText: {
-    display: 'flex',
-    justifyContent: 'center',
-    textAlign: 'center',
-    fontWeight: "bold"
+    fontWeight: "bold",
+    textAlign: 'center'
   },
   pedometerValue: {
-    display: 'flex',
-    justifyContent: 'center',
     color: '#5a5a5a',
     textAlign: 'center'
   }

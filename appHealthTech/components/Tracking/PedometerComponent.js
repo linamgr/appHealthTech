@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pedometer } from 'expo-sensors';
-import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity } from 'react-native';
 import DataModule  from "./DataModule";
 
 export default class PedometerComponent extends React.Component {
@@ -16,7 +16,7 @@ export default class PedometerComponent extends React.Component {
   };
 
   componentDidMount() {
-
+    var hello = 10;
   }
   
   activityTimerTick = () => {
@@ -129,33 +129,39 @@ export default class PedometerComponent extends React.Component {
 
   render() {
     return (
-      <ScrollView>
-        <View style={styles.container}>
+      <ScrollView style={styles.scrollContainer}>
+        <View style={styles.dataModuleContainer}>
         {/* Tem que ver como é o melhor jeito de guardar os dadosa e enviar pros componentes */}
-          <DataModule Text="Data" Data={ this.formatDateToDay() } />
-          <DataModule Text="Hora início" Data={ this.formatDateToHour() } />
-          <DataModule Text="Distância" Data={ this.calculateDistance() + " m" } /> 
-          <DataModule Text="Passos" Data={ this.state.currentStepCount + " steps"} />
-          <DataModule Text="Duração" Data={ this.state.totalTime + " seconds"} />
-          <DataModule Text="Vel. Média" Data={ this.calculateAverageVelocity() + " km/h" }/>
+          <DataModule Text="Data" Data={ this.formatDateToDay()} img="calendar-alt" />
+          <DataModule Text="Hora início" Data={ this.formatDateToHour()} img="hourglass-start" />
+          <DataModule Text="Distância" Data={ this.calculateDistance() + " m" } img="arrows-alt-h" /> 
+          <DataModule Text="Passos" Data={ this.state.currentStepCount + " passos"} img="shoe-prints" />
+          <DataModule Text="Duração" Data={ this.state.totalTime + " segundos"} img="hourglass-half" />
+          <DataModule Text="Vel. Média" Data={ this.calculateAverageVelocity() + " km/h" } img="tachometer-alt"/>
         </View>
          
         <View style = {styles.buttonsContainer}>
           <View style = {styles.button1}>
-            <Button 
+            {/* <Button 
                onPress={ this.startPedometer.bind(this) }
-              title = "Start Pedometer"
-              color = "#0F4C81"
+              title = "Iniciar"
+              color = "transparent"
               accessibilityLabel = "Click this to start pedometer" 
-            />
+            /> */}
+            <TouchableOpacity style={ styles.button1 } onPress={ this.startPedometer.bind(this) }> 
+              <Text style={ styles.buttonText1 }>INICIAR</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.button2}>
-            <Button 
+            {/* <Button 
                onPress={ this.finishPedometer.bind(this) }
-              title="Finish Pedometer"
-              color="#292929"
+              title="Finalizar"
+              color="transparent"
               accessibilityLabel="Click this to end pedometer"
-            />
+            /> */}
+            <TouchableOpacity style={ styles.button2 } onPress={ this.finishPedometer.bind(this) }> 
+              <Text style={ styles.buttonText2 }>FINALIZAR</Text>
+            </TouchableOpacity>
           </View> 
         </View>
       </ScrollView>
@@ -164,17 +170,26 @@ export default class PedometerComponent extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  scrollContainer: {
+    // borderWidth: 2,
+    // borderStyle: "solid",
+    // borderColor: "green"
+  },
+  dataModuleContainer: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     flexWrap: "wrap",
-    backgroundColor: '#779ecb',
-    margin: 10,
+    backgroundColor: '#52B1CF',
+    margin: 0,
     height: '100%',
-    paddingTop: 30,
-    paddingBottom: 10,
+    width: 360,
+    paddingTop: 0,
+    paddingBottom: 25,
     alignItems: 'center',
     justifyContent: 'center',
+    // borderWidth: 1,
+    // borderStyle: "solid",
+    // borderColor: "red"
   },
   buttonsContainer: {
     display: "flex",
@@ -182,19 +197,41 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: 'center',
     justifyContent: 'center',
-    bottom: 100,
-    // borderWidth: "1px",
-    // borderStyle: "solid",
-    // borderColor:  "black",
-    marginBottom: 50
+    bottom: 40,
+    // marginBottom: 50
   },
   button1: {
-    // marginLeft: 'auto',
-    marginRight: 20,
+    borderRadius: 50,
+    backgroundColor: "#79D18C",
+    width: 90,
+    height: 30,
+    // textAlign: "center",
+    margin: "auto",
+    marginRight: 15,
+    elevation: 5
   },
   button2: {
-    marginLeft: 20,
-    // marginRight: 'auto',
-    // marginLeft: '1.5em',
+    borderRadius: 50,
+    backgroundColor: "#F69ACC",
+    width: 90,
+    height: 30,
+    // textAlign: "center",
+    margin: "auto",
+    marginLeft: 5,
+    elevation: 5
   },
+  buttonText1: {
+    paddingTop: 5,
+    paddingLeft: 25,
+    color: "white",
+    fontSize: 12,
+    fontWeight: "bold",
+  },
+  buttonText2: {
+    paddingTop: 5,
+    paddingLeft: 12,
+    color: "white",
+    fontSize: 12,
+    fontWeight: "bold",
+  }
 });
