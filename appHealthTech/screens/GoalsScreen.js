@@ -20,18 +20,17 @@ const styles = StyleSheet.create({
     listItemHeader: {fontSize: 15, color: '#0000FF'},
     item: {margin: 10,backgroundColor: '#F6F6F6', borderRadius: 20},
     monitorador: {
+        flex: 1,
         paddingTop:15,
         paddingBottom:15,
-        width:180,
-        height:48,
+        height: 48,
         backgroundColor:'#00BBD3',
 
     },
     calculador:{
+        flex: 1,
         paddingTop:15,
         paddingBottom:15,
-        width:180,
-        height:48,
         backgroundColor:'#F69ACC',
 
     },
@@ -65,7 +64,7 @@ export default class Infos extends React.Component {
     state = {
         dataList: null,
     };
-    title = 'GOALS'
+    title = 'Rastreador de Metas de Saúde'
 
     componentDidMount() {
         FirebaseService.getDataList('leituras', dataIn => this.setState({dataList: dataIn}), 10);
@@ -88,53 +87,54 @@ export default class Infos extends React.Component {
                         style= {styles.calculador}
                         activeOpacity = { .5 }
                         onPress={() => this.props.navigation.navigate('Goals')}>
-                        <Text style={styles.textButton}> Calculadora de IMC </Text>
-                        </TouchableOpacity>
-                        </View>
-                <Text style={styles.text} >Indice de massa corporal</Text>
-                <View style={styles.fullWidth}>
-                    {   
-
-                        dataList && dataList.map(
-                            (item, index) => {
-
-                              /* Calculo imc */
-                              peso = parseFloat(item.Peso);
-                              altura = parseFloat(item.Altura);
-                              altura = altura * altura * 0.0001;
-                              imc =  peso /  altura;
-                              imc = parseFloat(imc.toFixed(2))
-
-                              for(var i = 0; i < valores_peso.length ; i++){
-                                eixo_x.push(i);
-                              }
-                
-                              if (imc >=25) {
-                                return <View style={[styles.margin10, styles.item]} key={index} >
-                                <View style={{padding:10}}>
-                                <Text style={styles.itemIMChigh}> {imc} </Text>
-
-                                </View>
-                            </View>
-                              } else {
-                                return <View style={[styles.margin10, styles.item]} key={index} >
-                                <View style={{padding:10}}>
-                                <Text style={styles.itemIMClow}> {imc} </Text>
-                                </View>
-                            </View>
-                              }
-
-                               
-                            }
-                        )
-                    }
-                
-                
+                        <Text style={styles.textButton}> IMC </Text>
+                    </TouchableOpacity>
                 </View>
-                
-               
+                <View style={{ flexDirection:'column', alignItems:'center',}}>
+                    <Text style={styles.text} >Indice de massa corporal</Text>
+                    <View style={styles.fullWidth}>
+                        {
+                            dataList && dataList.map(
+                                (item, index) => {
+
+                                  /* Calculo imc */
+                                  peso = parseFloat(item.Peso);
+                                  altura = parseFloat(item.Altura);
+                                  altura = altura * altura * 0.0001;
+                                  imc =  peso /  altura;
+                                  imc = parseFloat(imc.toFixed(2))
+
+                                  for(var i = 0; i < valores_peso.length ; i++){
+                                    eixo_x.push(i);
+                                  }
+
+                                  if (imc >=25) {
+                                    return <View style={[styles.margin10, styles.item]} key={index} >
+                                    <View style={{padding:10}}>
+                                    <Text style={styles.itemIMChigh}> {imc} </Text>
+
+                                    </View>
+                                </View>
+                                  } else {
+                                    return <View style={[styles.margin10, styles.item]} key={index} >
+                                    <View style={{padding:10}}>
+                                    <Text style={styles.itemIMClow}> {imc} </Text>
+                                    </View>
+                                </View>
+                                  }
+
+
+                                }
+                            )
+                        }
+
+
+                    </View>
+                </View>
+
+
 
             </ScrollView>
         );
     }
-} 
+}

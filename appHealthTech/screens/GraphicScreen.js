@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     monitorador: {
         paddingTop:15,
         paddingBottom:15,
-        width:180,
+        flex:1,
         height:48,
         backgroundColor:'#F69ACC',
 
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     calculador:{
         paddingTop:15,
         paddingBottom:15,
-        width:180,
+        flex:1,
         height:48,
         backgroundColor:'#00BBD3',
 
@@ -86,11 +86,11 @@ export default class Infos extends React.Component {
                         style= {styles.calculador}
                         activeOpacity = { .5 }
                         onPress={() => this.props.navigation.navigate('Goals')}>
-                        <Text style={styles.textButton}> Calculadora de IMC </Text>
+                        <Text style={styles.textButton}> IMC </Text>
                         </TouchableOpacity>
                         </View>
                 <View style={styles.fullWidth}>
-                    {   
+                    {
 
                         dataList && dataList.map(
                             (item, index) => {
@@ -105,10 +105,10 @@ export default class Infos extends React.Component {
                               for(var i = 0; i < valores_peso.length ; i++){
                                 eixo_x.push(i);
                               }
-                
-                              
 
-                               
+
+
+
                             }
                         )
                     }
@@ -133,9 +133,9 @@ export default class Infos extends React.Component {
                     onPress={() => this.props.navigation.navigate('AdicionarPeso')}>
                     <Text style={styles.textButton}> ADICIONAR PESO </Text>
                     </TouchableOpacity>
-               
+
 
             </ScrollView>
         );
     }
-} 
+}
