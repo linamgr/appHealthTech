@@ -5,10 +5,11 @@ import {firebaseDatabase} from '../utils/firebase';
 import { Button} from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Plot from 'react-plotly.js';
-import { valores_peso } from './WeightHistoryScreen'
+//import { valores_peso } from './WeightHistoryScreen'
 
 var peso, altura, imc;
 var eixo_x = [ ];
+var valores_peso = [];
 
 const styles = StyleSheet.create({
     margin10: {backgroundColor: '#52b1cf'},
@@ -124,8 +125,12 @@ export default class Infos extends React.Component {
     title = 'Rastreador de Metas de Saúde'
 
     componentDidMount() {
-        FirebaseService.getDataList('leituras', dataIn => this.setState({dataList: dataIn}), 10);
+        FirebaseService.getDataList('leituras/key/historico', dataIn => this.setState({dataList: dataIn}), 10);
+        valores_peso = [];
     };
+
+
+
 
     handleChange = e => {
     	this.setState({name: e.nativeEvent.text
@@ -141,6 +146,12 @@ export default class Infos extends React.Component {
     render() {
         const {dataList} = this.state;
         const {option} = this.title;
+
+        dataList && dataList.map(
+            (item, index) => {
+                    valores_peso.push(item.Peso)
+            }
+        );
 
         return (
             <ScrollView style={styles.margin10}>

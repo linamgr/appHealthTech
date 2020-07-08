@@ -29,16 +29,15 @@ const styles = StyleSheet.create({
         color: 'red',
         fontStyle:'normal',
         fontWeight:'Bold',
-        fontSize:50,
+        fontSize:45,
         textAlign: 'center'
     },
     itemIMClow: {
         color: '#4DC902',
         fontStyle:'normal',
         fontWeight:'Bold',
-        fontSize:50,
+        fontSize:45,
         textAlign: 'center',
-        width: 100
     },
     listItemHeader: {fontSize: 15, color: '#0000FF'},
     item: {

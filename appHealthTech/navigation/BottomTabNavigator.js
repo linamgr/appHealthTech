@@ -3,7 +3,6 @@ import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
 import GoalsScreen from '../screens/GoalsScreen';
-import LinksScreen from '../screens/LinksScreen';
 import WeightTrackerScreen from '../screens/WeightTrackerScreen';
 import WeightHistoryScreen from '../screens/WeightHistoryScreen';
 import AboutScreen from '../screens/AboutScreen';
