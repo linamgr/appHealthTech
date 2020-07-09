@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native';
+import {ScrollView, StyleSheet, Text, View, TouchableOpacity, TextInput, SnapshotViewIOS} from 'react-native';
 import FirebaseService from '../services/FirebaseService.js';
 import {firebaseDatabase} from '../utils/firebase';
 import { Button} from 'react-native';
@@ -110,7 +110,7 @@ let addItem = item => {
 	var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 	var dateTime = date+' '+time;
-
+    firebaseDatabase.ref('/leituras/key/Meta').once('value').then(snapshot => { peso = (snapshot.val()); });
     firebaseDatabase.ref('/leituras/key/historico').push({Peso: item, Data: dateTime});
   }
   else{
@@ -129,9 +129,6 @@ export default class Infos extends React.Component {
         FirebaseService.getDataList('leituras/key/historico', dataIn => this.setState({dataList: dataIn}), 10);
         valores_peso = [];
     };
-
-
-
 
     handleChange = e => {
     	this.setState({name: e.nativeEvent.text
@@ -153,7 +150,6 @@ export default class Infos extends React.Component {
                 valores_peso.push(item.Peso)
             }
         );
-
         return (
             <ScrollView style={styles.margin10}>
 
@@ -176,9 +172,10 @@ export default class Infos extends React.Component {
                     {   
                         dataList && dataList.map(
                             (item, index) => {
+
                               for(var i = 0; i < valores_peso.length ; i++){
                                 eixo_x.push(i);
-                                eixo_y[i] = valores_peso[valores_peso.length - 1];
+                                eixo_y[i] = peso;
                               }
                               
                           }

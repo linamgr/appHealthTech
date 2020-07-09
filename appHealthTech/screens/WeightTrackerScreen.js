@@ -72,16 +72,8 @@ const styles = StyleSheet.create({
 
 let addItem = item => {
   if(Boolean(Number(item)) && Number(item) > 0){
-    peso_meta = item;
-    firebaseDatabase.ref('/leituras/key').update({Peso: item});
+    firebaseDatabase.ref('/leituras/key').update({Meta: item});
     window.alert("Peso adicionado com sucesso");
-
-	var today = new Date();
-	var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-	var dateTime = date+' '+time;
-
-    firebaseDatabase.ref('/leituras/key/historico').push({Peso: item, Data: dateTime});
   }
   else{
     window.alert("Entrada inválida");
