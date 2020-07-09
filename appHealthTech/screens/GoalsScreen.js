@@ -179,7 +179,7 @@ export default class Infos extends React.Component {
                             (item, index) => {
                               for(var i = 0; i < valores_peso.length ; i++){
                                 eixo_x.push(i);
-                                eixo_y[i] = peso_meta;
+                                //eixo_y[i] = peso_meta;
                               }
                               
                           }
