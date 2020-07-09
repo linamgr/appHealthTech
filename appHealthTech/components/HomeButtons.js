@@ -7,7 +7,7 @@ export default function HomeButtons(props) {
     <View style={{
         width: '46%',
         paddingVertical: 30,
-        borderRadius: 20,
+        borderRadius: 15,
         backgroundColor: props.button_background,
         flexDirection: 'column',
         alignItems: 'center',

@@ -6,10 +6,12 @@ import { StyleSheet,
         ScrollView, 
         Picker,
         TouchableOpacity} from 'react-native';
+import {Fire} from '../service/fire';
 
 
 const AddAlarmScreen = props => {
 
+    const database = new Fire();
     //Tratamento do campo Horario do Lembrete
     var current_hour = new Date().getHours();
     var string_current_hour = '';
@@ -229,7 +231,9 @@ const AddAlarmScreen = props => {
                     </View>
                     <View style={styles.button_container}>
                         <TouchableOpacity onPress={() => {
-                        props.navigation.navigate('WaterScreenList');}} style={styles.button_background}>
+                            database.setAlarm(enteredHourGoal+":"+enteredMinGoal,selectedType,enteredNameReminder,enteredHourRepeatGoal+":"+enteredMinRepeatGoal);
+                            //props.navigation.navigate('WaterScreenList');
+                            }} style={styles.button_background}>
                             <Text style={styles.text_button}>Pronto!</Text>
                         </TouchableOpacity>
                     </View>

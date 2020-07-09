@@ -9,7 +9,7 @@ import HomeScreen from '../screens/HomeScreen';
 
 
 const BottomTab = createBottomTabNavigator();
-const INITIAL_ROUTE_NAME = 'WaterTabNav';
+const INITIAL_ROUTE_NAME = 'Home';
 
 
 export default function BottomTabNavigator({ navigation, route }) {
@@ -25,7 +25,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={HomeScreen}
         options={{
           title: 'Home',
-          tabBarVisible: false,
+          tabBarVisible: true,
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-home" />,
         }}
       />
@@ -34,6 +34,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={ScreenNavigator}
         options={{
           title: 'Lembretes',
+          tabBarVisible: true,
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-clock" />,
         }}
       />

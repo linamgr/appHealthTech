@@ -7,6 +7,8 @@ import useCachedResources from './hooks/useCachedResources';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import HomeScreen from './screens/HomeScreen';
+import { YellowBox } from 'react-native';
+YellowBox.ignoreWarnings(['Setting a timer']);
 
 const Stack = createStackNavigator();
 
