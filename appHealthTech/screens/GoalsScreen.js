@@ -193,6 +193,7 @@ export default class Infos extends React.Component {
                     x: eixo_x,
                     y: valores_peso,
                     mode: 'lines+markers',
+                    name: 'peso',
                     marker: {
                         color: 'blue',
                         size: 8
@@ -207,6 +208,7 @@ export default class Infos extends React.Component {
                     x: eixo_x,
                     y: eixo_y,
                     mode: 'lines',
+                    name: 'meta',
                     marker: {
                         color: 'red',
                         size: 8
