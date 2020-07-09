@@ -104,7 +104,6 @@ const styles = StyleSheet.create({
 let addItem = item => {
   if(Boolean(Number(item)) && Number(item) > 0){
     firebaseDatabase.ref('/leituras/key').update({Peso: item});
-    //peso = item;
     window.alert("Peso adicionado com sucesso");
 
 	var today = new Date();
@@ -179,7 +178,7 @@ export default class Infos extends React.Component {
                             (item, index) => {
                               for(var i = 0; i < valores_peso.length ; i++){
                                 eixo_x.push(i);
-                                //eixo_y[i] = peso_meta;
+                                eixo_y[i] = valores_peso[valores_peso.length - 1];
                               }
                               
                           }
