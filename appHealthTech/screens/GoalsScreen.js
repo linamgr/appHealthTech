@@ -5,10 +5,11 @@ import {firebaseDatabase} from '../utils/firebase';
 import { Button} from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Plot from 'react-plotly.js';
-//import { valores_peso } from './WeightHistoryScreen'
+import { peso_meta } from './WeightHistoryScreen'
 
 var peso, altura, imc;
 var eixo_x = [ ];
+var eixo_y = [ ];
 var valores_peso = [];
 
 const styles = StyleSheet.create({
@@ -103,6 +104,7 @@ const styles = StyleSheet.create({
 let addItem = item => {
   if(Boolean(Number(item)) && Number(item) > 0){
     firebaseDatabase.ref('/leituras/key').update({Peso: item});
+    //peso = item;
     window.alert("Peso adicionado com sucesso");
 
 	var today = new Date();
@@ -149,7 +151,7 @@ export default class Infos extends React.Component {
 
         dataList && dataList.map(
             (item, index) => {
-                    valores_peso.push(item.Peso)
+                valores_peso.push(item.Peso)
             }
         );
 
@@ -172,35 +174,57 @@ export default class Infos extends React.Component {
                 </View>
 
                 <View style={styles.grafico}>
-                    {
+                    {   
                         dataList && dataList.map(
                             (item, index) => {
-                              /* Calculo imc */
-                              peso = parseFloat(item.Peso);
-                              altura = parseFloat(item.Altura);
-                              altura = altura * altura * 0.0001;
-                              imc =  peso /  altura;
-                              imc = parseFloat(imc.toFixed(2))
-
                               for(var i = 0; i < valores_peso.length ; i++){
                                 eixo_x.push(i);
+                                eixo_y[i] = peso_meta;
                               }
+                              
                           }
                         )
                     }
                     <Plot
-                        backgroundColor= "#C7DDC5"
-                      data={[
-                        {
-                          x: eixo_x,
-                          y: valores_peso,
-                          type: 'scatter',
-                          mode: 'lines',
-                          marker: {color: 'red'},
+                    backgroundColor= "#C7DDC5"
+                    data={[
+                    {
+                    type: 'scatter',
+                    x: eixo_x,
+                    y: valores_peso,
+                    mode: 'lines+markers',
+                    marker: {
+                        color: 'blue',
+                        size: 8
+                      },
+                      line: {
+                        color: 'blue',
+                        width: 1
+                      }
+                    },
+                    {
+                    type: 'scatter',
+                    x: eixo_x,
+                    y: eixo_y,
+                    mode: 'lines',
+                    marker: {
+                        color: 'red',
+                        size: 8
                         },
-                        {type: 'bar', x: eixo_x, y: valores_peso},
-                      ]}
-                      layout={ {width: 338, height: 203,backgroundColor:"#C7DDC5"} }
+                        line: {
+                        color: 'red',
+                        width: 1
+                        }
+                        },
+                          ]
+                       }
+                      layout={ 
+                        {
+                        title:'Histórico de Pesos',
+                        height: 300,
+                        width: 450,
+                      }
+                    }
 
                     />
                     </View>

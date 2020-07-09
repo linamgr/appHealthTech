@@ -5,7 +5,9 @@ import {firebaseDatabase} from '../utils/firebase';
 import { Button} from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { TouchableHighlight, TextInput, Alert} from 'react-native';
+export { peso_meta };
 
+var peso_meta;
 const styles = StyleSheet.create({
   main: {
     flex: 1,
@@ -70,6 +72,7 @@ const styles = StyleSheet.create({
 
 let addItem = item => {
   if(Boolean(Number(item)) && Number(item) > 0){
+    peso_meta = item;
     firebaseDatabase.ref('/leituras/key').update({Peso: item});
     window.alert("Peso adicionado com sucesso");
 

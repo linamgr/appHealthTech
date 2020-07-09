@@ -5,11 +5,8 @@ import {firebaseDatabase} from '../utils/firebase';
 import { Button} from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Plot from 'react-plotly.js';
-import { valores_peso } from './WeightHistoryScreen'
 
 var peso, altura, imc;
-var eixo_x = [ ];
-
 const styles = StyleSheet.create({
     margin10: {backgroundColor: '#52b1cf'},
     fullWidth: {flex: 1},
@@ -129,10 +126,6 @@ export default class Infos extends React.Component {
                           altura = altura * altura * 0.0001;
                           imc =  peso /  altura;
                           imc = parseFloat(imc.toFixed(2))
-
-                          for(var i = 0; i < valores_peso.length ; i++){
-                            eixo_x.push(i);
-                          }
 
                           if (imc >=25) {
                             return <View style={[styles.margin10, styles.item]} key={index} >
