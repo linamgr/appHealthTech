@@ -3,12 +3,11 @@ import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
 import GoalsScreen from '../screens/GoalsScreen';
-import WeightTrackerScreen from '../screens/WeightTrackerScreen';
 import WeightHistoryScreen from '../screens/WeightHistoryScreen';
 import AboutScreen from '../screens/AboutScreen';
 
 const BottomTab = createBottomTabNavigator();
-const INITIAL_ROUTE_NAME = 'Weight History';
+const INITIAL_ROUTE_NAME = 'Metas';
 
 export default function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
@@ -19,35 +18,27 @@ export default function BottomTabNavigator({ navigation, route }) {
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
-        name="Goals"
+        name="Metas"
         component={GoalsScreen}
         options={{
-          title: 'Get Started',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          title: 'Metas',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-analytics" />,
         }}
       />
       <BottomTab.Screen
-        name="Weight"
-        component={WeightTrackerScreen}
-        options={{
-          title: 'Weight Tracker',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
-        }}
-      />
-      <BottomTab.Screen
-        name="Weight History"
+        name="Histórico"
         component={WeightHistoryScreen}
         options={{
-          title: 'Weight History',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          title: 'Histórico',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-filing" />,
         }}
       />
       <BottomTab.Screen
-        name="About"
+        name="Usuário"
         component={AboutScreen}
         options={{
-          title: 'User info',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          title: 'Usuário',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-contact" />,
         }}
       />
     </BottomTab.Navigator>
@@ -58,13 +49,11 @@ function getHeaderTitle(route) {
   const routeName = route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
 
   switch (routeName) {
-    case 'Goals':
+    case 'Metas':
       return 'Rastreador de Metas de Saúde';
-    case 'Weight':
-      return 'Weight Tracker';
-    case 'Weight History':
-      return 'Weight History';
-    case 'About':
-      return 'User info'
+    case 'Histórico':
+      return 'Histórico de Pesos';
+    case 'Usuário':
+      return 'Informações do Usuário'
   }
 }
