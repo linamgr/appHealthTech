@@ -5,12 +5,12 @@ import {firebaseDatabase} from '../utils/firebase';
 import { Button} from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Plot from 'react-plotly.js';
-import { peso_meta } from './WeightHistoryScreen'
 
 var peso, altura, imc;
 var eixo_x = [ ];
 var eixo_y = [ ];
 var valores_peso = [];
+firebaseDatabase.ref('/leituras/key/Meta').once('value').then(snapshot => { peso = (snapshot.val()); });
 
 const styles = StyleSheet.create({
     margin10: {backgroundColor: '#52b1cf'},
@@ -105,12 +105,14 @@ let addItem = item => {
   if(Boolean(Number(item)) && Number(item) > 0){
     firebaseDatabase.ref('/leituras/key').update({Peso: item});
     window.alert("Peso adicionado com sucesso");
-
+    
 	var today = new Date();
 	var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-	var dateTime = date+' '+time;
+    var dateTime = date+' '+time;
+    
     firebaseDatabase.ref('/leituras/key/Meta').once('value').then(snapshot => { peso = (snapshot.val()); });
+
     firebaseDatabase.ref('/leituras/key/historico').push({Peso: item, Data: dateTime});
   }
   else{
@@ -126,6 +128,7 @@ export default class Infos extends React.Component {
     title = 'Rastreador de Metas de Saúde'
 
     componentDidMount() {
+        firebaseDatabase.ref('/leituras/key/Meta').once('value').then(snapshot => { peso = (snapshot.val()); });
         FirebaseService.getDataList('leituras/key/historico', dataIn => this.setState({dataList: dataIn}), 10);
         valores_peso = [];
     };
@@ -142,9 +145,10 @@ export default class Infos extends React.Component {
   };
 
     render() {
+        firebaseDatabase.ref('/leituras/key/Meta').once('value').then(snapshot => { peso = (snapshot.val()); });
         const {dataList} = this.state;
         const {option} = this.title;
-
+        
         dataList && dataList.map(
             (item, index) => {
                 valores_peso.push(item.Peso)

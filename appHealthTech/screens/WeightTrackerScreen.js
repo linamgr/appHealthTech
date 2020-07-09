@@ -5,7 +5,6 @@ import {firebaseDatabase} from '../utils/firebase';
 import { Button} from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { TouchableHighlight, TextInput, Alert} from 'react-native';
-export { peso_meta };
 
 var peso_meta;
 const styles = StyleSheet.create({
@@ -97,8 +96,8 @@ export default class Homescreen extends React.Component {
 
     render() {
 	    return (
+        
 	  		<View style={styles.main}>
-
 		    	<Text style={styles.title}>Insira aqui o peso desejado</Text>
 
           <TextInput style={styles.itemInput}
@@ -112,6 +111,7 @@ export default class Homescreen extends React.Component {
                     onPress={this.handleSubmit}>
                     <Text style={styles.textButton}> Registrar Meta </Text>
                     </TouchableOpacity>
+                    
   			</View>
 		);
 	}
