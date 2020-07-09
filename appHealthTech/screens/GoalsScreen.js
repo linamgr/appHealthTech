@@ -2,8 +2,6 @@ import React from 'react';
 import {ScrollView, StyleSheet, Text, View, TouchableOpacity, TextInput, SnapshotViewIOS} from 'react-native';
 import FirebaseService from '../services/FirebaseService.js';
 import {firebaseDatabase} from '../utils/firebase';
-import { Button} from 'react-native';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Plot from 'react-plotly.js';
 
 var peso, altura, imc;
@@ -141,7 +139,7 @@ export default class Infos extends React.Component {
 
   	handleSubmit = () => {
       addItem(this.state.name);
-      this.props.navigation.navigate('Goals');
+      this.props.navigation.navigate('Metas');
   };
 
     render() {
@@ -167,7 +165,7 @@ export default class Infos extends React.Component {
                     <TouchableOpacity
                         style= {styles.calculador}
                         activeOpacity = { .5 }
-                        onPress={() => this.props.navigation.navigate('Graphic')}>
+                        onPress={() => this.props.navigation.navigate('IMC')}>
                         <Text style={styles.textButton}> IMC </Text>
                     </TouchableOpacity>
                 </View>
@@ -224,7 +222,7 @@ export default class Infos extends React.Component {
                         {
                         title:'Histórico de Pesos',
                         height: 300,
-                        width: 450,
+                        width: 360,
                       }
                     }
 

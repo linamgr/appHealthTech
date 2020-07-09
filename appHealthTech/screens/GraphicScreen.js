@@ -1,10 +1,6 @@
 import React from 'react';
 import {ScrollView, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import FirebaseService from '../services/FirebaseService.js';
-import {firebaseDatabase} from '../utils/firebase';
-import { Button} from 'react-native';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
-import Plot from 'react-plotly.js';
 
 var peso, altura, imc;
 const styles = StyleSheet.create({
@@ -48,7 +44,7 @@ const styles = StyleSheet.create({
         paddingBottom:15,
         flex:1,
         height:48,
-        backgroundColor:'#F69ACC',
+        backgroundColor:'#00BBD3',
 
     },
     calculador:{
@@ -56,7 +52,7 @@ const styles = StyleSheet.create({
         paddingBottom:15,
         flex:1,
         height:48,
-        backgroundColor:'#00BBD3',
+        backgroundColor:'#F69ACC',
 
     },
     buttonStyle: {
@@ -104,7 +100,7 @@ export default class Infos extends React.Component {
                     <TouchableOpacity
                         style= {styles.monitorador}
                         activeOpacity = { .5 }
-                        onPress={() => this.props.navigation.navigate('Goals')}>
+                        onPress={() => this.props.navigation.navigate('Metas')}>
                         <Text style={styles.textButton}> Monitorador </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -143,9 +139,7 @@ export default class Infos extends React.Component {
                     )
                 }
                 </View>
-
-
-            </ScrollView>
+           </ScrollView>
         );
     }
 }

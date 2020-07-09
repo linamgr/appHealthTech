@@ -44,6 +44,9 @@ export default class Infos extends React.Component {
 
                                     <Text style={styles.listItemHeader}> Peso (kg) </Text>
                                     <Text style={styles.listItemText}> {item.Peso} </Text>
+
+                                    <Text style={styles.listItemHeader}> Peso Desejado (kg) </Text>
+                                    <Text style={styles.listItemText}> {item.Meta} </Text>
                                     </View>
                                 </View>
                             }
@@ -51,14 +54,6 @@ export default class Infos extends React.Component {
                     }
 
                 </View>
-                <Button
-                        title="Adicionar Peso"
-                        onPress={() => this.props.navigation.navigate('AdicionarPeso')}
-                />
-                <Button
-                        title="Mostrar Historico"
-                        onPress={() => this.props.navigation.navigate('MostrarHistorico')}
-                />
             </ScrollView>
         );
     }

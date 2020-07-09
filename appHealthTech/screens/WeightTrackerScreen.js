@@ -1,9 +1,6 @@
 import React from 'react';
 import {ScrollView, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import FirebaseService from '../services/FirebaseService.js';
 import {firebaseDatabase} from '../utils/firebase';
-import { Button} from 'react-native';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { TouchableHighlight, TextInput, Alert} from 'react-native';
 
 var peso_meta;
@@ -72,7 +69,7 @@ const styles = StyleSheet.create({
 let addItem = item => {
   if(Boolean(Number(item)) && Number(item) > 0){
     firebaseDatabase.ref('/leituras/key').update({Meta: item});
-    window.alert("Peso adicionado com sucesso");
+    window.alert("Peso adicionada com sucesso");
   }
   else{
     window.alert("Entrada inválida");
@@ -90,7 +87,7 @@ export default class Homescreen extends React.Component {
 
   	handleSubmit = () => {
       addItem(this.state.name);
-      this.props.navigation.navigate('Goals');
+      this.props.navigation.navigate('Metas');
   };
 
 

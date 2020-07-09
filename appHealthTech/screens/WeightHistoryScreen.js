@@ -1,8 +1,6 @@
 import React from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import FirebaseService from '../services/FirebaseService.js';
-import {firebaseDatabase} from '../utils/firebase';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 const styles = StyleSheet.create({
     margin10: {margin: 10,backgroundColor: '#52b1cf'},
