@@ -31,6 +31,7 @@ app.auth().createUserWithEmailAndPassword(email, password).catch(function(error)
 });
 
 */
+/*
 app.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
@@ -39,11 +40,14 @@ app.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
     // ...
 });        
 
+*/
+
+var user = {userId : "luccas-nao-e-lucas"};
 
 function writeData(object)
 {   
     //signInWithEmailAndPassword(email,password);_
-    var user = app.auth().currentUser;
+    //var user = app.auth().currentUser;
     if (user) {
         var userId = user.uid;
         database.ref( '/'+userId + '/walks').push(object).then(data => data).catch(error => error);    
@@ -54,7 +58,7 @@ function writeData(object)
 
 function readDataOnce()
 {   
-    var user = app.auth().currentUser;
+    //var user = app.auth().currentUser;
     if (!user) {
         console.log("No user signed");
         return;

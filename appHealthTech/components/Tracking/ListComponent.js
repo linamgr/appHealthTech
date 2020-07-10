@@ -71,7 +71,6 @@ var activitiesArray = function getData(){
   var activitiesArrayAux = [];
   let data = firebase.readAllPedometerData();
   console.log("data=");
-  
   console.log(data);
   if(!data){
     return [
