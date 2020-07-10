@@ -2,6 +2,7 @@ import React from 'react';
 import { Pedometer } from 'expo-sensors';
 import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity } from 'react-native';
 import DataModule  from "./DataModule";
+import * as firebase from '../../FirebaseIntegration/firebase';
 
 export default class PedometerComponent extends React.Component {
 
@@ -16,7 +17,7 @@ export default class PedometerComponent extends React.Component {
   };
 
   componentDidMount() {
-    var hello = 10;
+    firebase.readAllPedometerData();
   }
   
   activityTimerTick = () => {
@@ -77,11 +78,22 @@ export default class PedometerComponent extends React.Component {
     clearTimeout(this.state.activityTimer);
 
     this.setState({
-      currentStepCount: 0,
+      currentStepCount: stepCount,
       finishDate: endDate,
       running: false,
       activityTimer : null,
     });
+
+    let storagedData = {
+      steps : this.state.currentStepCount,
+      date : this.formatDateToDay(),
+      time : this.formatDateToHour(),
+      duration : this.state.totalTime,
+      distance : this.calculateDistance(),
+      vel : this.calculateAverageVelocity()
+    };
+
+    firebase.pushPedometerData(storagedData);
 
     this._unsubscribe();
   }
