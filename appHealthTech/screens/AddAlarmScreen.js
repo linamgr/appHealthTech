@@ -49,7 +49,7 @@ const AddAlarmScreen = props => {
         {
             //console.log(ObjectEvent.nativeEvent.text);
             //console.log(enteredHourGoal);
-            aux = '0'+ObjectEvent.nativeEvent.text;
+            var aux = '0'+ObjectEvent.nativeEvent.text;
             setHEnteredGoal(aux);
         }
     }
@@ -71,7 +71,7 @@ const AddAlarmScreen = props => {
         {
             //console.log(ObjectEvent.nativeEvent.text);
             //console.log(enteredHourGoal);
-            aux = '0'+ObjectEvent.nativeEvent.text;
+            var aux = '0'+ObjectEvent.nativeEvent.text;
             setMEnteredGoal(aux);
         }
     }
@@ -126,7 +126,7 @@ const AddAlarmScreen = props => {
         {
             //console.log(ObjectEvent.nativeEvent.text);
             //console.log(enteredHourGoal);
-            aux = '0'+ObjectEvent.nativeEvent.text;
+            var aux = '0'+ObjectEvent.nativeEvent.text;
             setHRepeatEnteredGoal(aux);
         }
     }
@@ -137,7 +137,7 @@ const AddAlarmScreen = props => {
         {
             //console.log(ObjectEvent.nativeEvent.text);
             //console.log(enteredHourGoal);
-            aux = '0'+ObjectEvent.nativeEvent.text;
+            var aux = '0'+ObjectEvent.nativeEvent.text;
             setMRepeatEnteredGoal(aux);
         }
     }
@@ -232,7 +232,7 @@ const AddAlarmScreen = props => {
                     <View style={styles.button_container}>
                         <TouchableOpacity onPress={() => {
                             database.setAlarm(enteredHourGoal+":"+enteredMinGoal,selectedType,enteredNameReminder,enteredHourRepeatGoal+":"+enteredMinRepeatGoal);
-                            //props.navigation.navigate('WaterScreenList');
+                            props.navigation.navigate('HomeScreen');
                             }} style={styles.button_background}>
                             <Text style={styles.text_button}>Pronto!</Text>
                         </TouchableOpacity>

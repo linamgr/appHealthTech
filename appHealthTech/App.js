@@ -8,6 +8,8 @@ import LinkingConfiguration from './navigation/LinkingConfiguration';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import HomeScreen from './screens/HomeScreen';
 import { YellowBox } from 'react-native';
+import ListScreen from './screens/ListScreen';
+import AddAlarmScreen from './screens/AddAlarmScreen';
 YellowBox.ignoreWarnings(['Setting a timer']);
 
 const Stack = createStackNavigator();
@@ -23,7 +25,9 @@ export default function App(props) {
         {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
         <NavigationContainer linking={LinkingConfiguration}>
           <Stack.Navigator screenOptions={{headerShown: false}}>
-            <Stack.Screen name="WaterTabNav" component={BottomTabNavigator}/>
+            <Stack.Screen name="HomeScreen" component={HomeScreen}/>
+            <Stack.Screen name="ListScreen" component={ListScreen}/>
+            <Stack.Screen name="AddAlarmScreen" component={AddAlarmScreen}/>
           </Stack.Navigator>
         </NavigationContainer>
       </View>

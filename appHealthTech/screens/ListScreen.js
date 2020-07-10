@@ -34,7 +34,6 @@ var itens = [
   }*/
 ];
 
-var hasToUpdate = true;
 
 class ListScreen extends Component {
   //const isFocused = useIsFocused();
@@ -70,10 +69,27 @@ class ListScreen extends Component {
 
   constructor(){
     super();
-    this.state = {
-      data: [],
-      isLoaded: false,
-    }
+    firebase.database().ref('Alarmes/').once('value').then(
+      snapshot => {
+        this.setState({
+          stores: snapshot.val()
+        });
+        //console.log('User data: ', this.state.stores);
+        var array_itens = [];
+        for(var key in this.state.stores){
+          var obj = this.state.stores[key];
+          array_itens.push({
+            id: key,
+            hora: obj.hora,
+            nome: obj.nome,
+            periodo: obj.periodo,
+            tipo: obj.tipo
+          })
+        }
+        itens = array_itens;
+        console.log("AAAAAAAAAAAAA: ", itens);
+      }
+    );
   }
 
   componentDidMount(){
@@ -94,9 +110,8 @@ class ListScreen extends Component {
       console.log(itens);
     });
   }*/
-    var data_array = [];
     const { navigation } = this.props;
-    //this.focusListener = navigation.addListener("focus", () => {
+    this.focusListener = navigation.addListener("focus", () => {
       firebase.database().ref('Alarmes/').once('value').then(
         snapshot => {
           this.setState({
@@ -116,20 +131,13 @@ class ListScreen extends Component {
           }
           itens = array_itens;
           console.log("BBBBBBB: ", itens);
-          data_array.push({itens});
         }
       );
-      //console.log("Mudou de tela \n");
-      //hasToUpdate = true;
-    //});
-    this.setState({
-      data: data_array,
-      isLoaded: true
-    })
+    });
   }
 
   UNSAFE_componentWillMount(){
-    /*firebase.database().ref('Alarmes/').once('value').then(
+    firebase.database().ref('Alarmes/').once('value').then(
       snapshot => {
         this.setState({
           stores: snapshot.val()
@@ -149,7 +157,7 @@ class ListScreen extends Component {
         itens = array_itens;
         console.log("CCCCCCCCCCCCC: ", itens);
       }
-    );*/
+    );
   }
 
   renderItem(item)  {
@@ -199,29 +207,15 @@ class ListScreen extends Component {
         <View style={styles.header_container}>
           <Text style={styles.header_text}>Olá Leonardo,</Text>
         </View>
-        {this.state.isLoaded ?
-        <FlatList
-        style={{marginHorizontal: 15, height: 400}}
-        data={this.state.data}
-        renderItem={(item) => this.renderItem(item)}
-        keyExtractor={item => item.id}
-        showsVerticalScrollIndicator={false}
-        //extraData={hasToUpdate}
-        />
-      :
-        <Text>Nao Carregou</Text>}
         <View style={styles.item_container} key={'ESSE'}>
-            {!(this.state.data === []) ? 
             <FlatList
             style={{marginHorizontal: 15, height: 400}}
-            data={this.state.data}
+            data={itens}
             renderItem={({item}) => this.renderItem(item)}
             keyExtractor={item => item.id}
             showsVerticalScrollIndicator={false}
             //extraData={hasToUpdate}
             />
-            :
-            <Text>Aqui!!!</Text>}
         </View>
         <View style={styles.button_container}>
           <TouchableOpacity onPress={() => {

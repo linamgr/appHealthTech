@@ -14,7 +14,7 @@ export default function HomeButtons(props) {
         justifyContent: 'center',
     }}>
         <TouchableOpacity onPress={() => {
-            props.navigation.navigate('WaterTabNav');}}>
+            props.navigation.navigate('ListScreen');}}>
             <Text style={{
                 color: '#FFFFFF',
                 textAlign: 'center',
