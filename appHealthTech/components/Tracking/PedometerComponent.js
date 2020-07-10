@@ -17,7 +17,7 @@ export default class PedometerComponent extends React.Component {
   };
 
   componentDidMount() {
-    firebase.readDataOnce('users');
+    firebase.readAllPedometerData();
   }
   
   activityTimerTick = () => {
@@ -78,11 +78,22 @@ export default class PedometerComponent extends React.Component {
     clearTimeout(this.state.activityTimer);
 
     this.setState({
-      currentStepCount: 0,
+      currentStepCount: stepCount,
       finishDate: endDate,
       running: false,
       activityTimer : null,
     });
+
+    let storagedData = {
+      steps : this.state.currentStepCount,
+      date : this.formatDateToDay(),
+      time : this.formatDateToHour(),
+      duration : this.state.totalTime,
+      distance : this.calculateDistance(),
+      vel : this.calculateAverageVelocity()
+    };
+
+    firebase.pushPedometerData(storagedData);
 
     this._unsubscribe();
   }
