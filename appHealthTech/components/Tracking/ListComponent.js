@@ -122,10 +122,16 @@ export default class ListComponent extends React.Component {
   }
 }
 
+var printaQualquerMerda = () => {
+  return true
+}
+
+
 const ActivitiesElements = ({activitiesArray}) => (
-  <View>
-    {/* { activitiesArray.map(activity => (<DataModule Text={"Atividade " + activity.id} Data={ this.formatDateToDay(activity.date)} img="running" />)) } */}
-    { activitiesArray.map(activity => (<DataModule Text = {"Atividade "+(activity.id + 1)} Data={activity.date} img="running"/>)) }
+  <View style={styles.activitiesContainer}>
+    <TouchableOpacity onPress={ printaQualquerMerda }> 
+      { activitiesArray.map(activity => (<DataModule key = {activity.id} Text = {"Atividade "+(activity.id + 1)} Data={activity.date} img="running"/>)) }
+    </TouchableOpacity>
   </View>
 );
 {/* <DataModule Text="Atividade 1" Data={ this.formatDateToDay()} img="running" /> */}
@@ -174,4 +180,10 @@ const styles = StyleSheet.create({
   dataEntry: {
     backgroundColor: "black",
   },
+  activitiesContainer: {
+    // borderStyle: "solid",
+    // borderWidth: 1,
+    // borderColor: "red",
+    marginLeft: -140,
+  }
 });
