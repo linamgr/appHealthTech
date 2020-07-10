@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity } from 'react-native';
 import DataModule  from "./DataModule";
+import * as firebase from '../../FirebaseIntegration/firebase';
+
 
 export default class ListComponent extends React.Component {
 
@@ -64,6 +66,44 @@ const ActivitiesElements = ({activitiesArray}) => (
 );
 {/* <DataModule Text="Atividade 1" Data={ this.formatDateToDay()} img="running" /> */}
 
+
+var activitiesArray = function getData(){ 
+  var activitiesArrayAux = [];
+  let data = firebase.readAllPedometerData();
+  console.log("data=");
+  
+  console.log(data);
+  if(!data){
+    return [
+      {
+        "date": "0",
+        "initialHour": "0",
+        "distance": "0",
+        "steps": "0",
+        "duration": "0",
+        "averageVelocity": "0",
+        "id": 0
+      }
+    ]
+  }
+
+  let i = 0;
+  data.forEach((child)=>{
+    let item = {};
+    item["date"] = child.val().date;
+    item["initialHour"] = child.val().time;
+    item["distance"] = child.val().distance;
+    item["steps"] = child.val().steps;
+    item["duration"] = child.val().duration;
+    item["averageVelocity"] = child.val().vel;
+    item["id"] = i;    
+    activitiesArrayAux.push(item); 
+    i++
+  });
+  return activitiesArrayAux;
+}();
+
+/*
 const activitiesArray = [
   {
     "date": "15/08/2020",
@@ -84,6 +124,7 @@ const activitiesArray = [
     "id": 1
   }
 ];
+*/
 
 const styles = StyleSheet.create({
   dataModuleContainer: {

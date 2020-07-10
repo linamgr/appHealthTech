@@ -20,6 +20,7 @@ var database = app.database();
 //Create a interface for this
 const email = "lucas@usp.br";
 const password = "ASDADS74Hk18salaj!@#"; 
+
 /*
 app.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
     // Handle Errors here.
@@ -28,8 +29,8 @@ app.auth().createUserWithEmailAndPassword(email, password).catch(function(error)
     console.log(errorCode + error.message);
     // ...
 });
-*/ 
-/*
+
+*/
 app.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
@@ -37,7 +38,7 @@ app.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
     console.log(errorCode + error.message);
     // ...
 });        
-*/
+
 
 function writeData(object)
 {   
@@ -58,13 +59,18 @@ function readDataOnce()
         console.log("No user signed");
         return;
     } 
+
+    var returnValue;
     database.ref('/' + user.uid + '/walks').on("value", (snapshot) => {
         console.log(snapshot.val());
         snapshot.forEach((child)=>{
             let item = child.val();
-            console.log(item);
         });
-    })   
+
+        returnValue = snapshot;
+    })
+    
+    return returnValue;
 }
 
 
