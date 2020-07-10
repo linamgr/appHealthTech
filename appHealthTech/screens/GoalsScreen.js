@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     }
 });
 
-let addItem = item => {
+let addItem = (item, component) => {
   if(Boolean(Number(item)) && Number(item) > 0){
     firebaseDatabase.ref('/leituras/key').update({Peso: item});
     window.alert("Peso adicionado com sucesso");
@@ -112,6 +112,7 @@ let addItem = item => {
     firebaseDatabase.ref('/leituras/key/Meta').once('value').then(snapshot => { peso = (snapshot.val()); });
 
     firebaseDatabase.ref('/leituras/key/historico').push({Peso: item, Data: dateTime});
+    component.render();
   }
   else{
     window.alert("Entrada inválida");
@@ -138,8 +139,8 @@ export default class Infos extends React.Component {
 
 
   	handleSubmit = () => {
-      addItem(this.state.name);
-      this.props.navigation.navigate('Metas');
+      addItem(this.state.name, this);
+      this.componentDidMount();
   };
 
     render() {
