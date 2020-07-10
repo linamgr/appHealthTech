@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity } from 'react-native';
-import DataModule  from "./DataModule";
+import DataModuleAlternative  from "./DataModuleAlternative";
 import * as firebase from '../../FirebaseIntegration/firebase';
 
 
@@ -32,35 +32,7 @@ export default class ListComponent extends React.Component {
     //this.getActivitiesArray();
   }
 
-  formatDateToDay(){
-    // if(!this.state.startDate)
-    //   return "";
-    // let newDate = new Date(this.state.startDate);
-    // return ("0" + newDate.getDate()).slice(-2) + "/" + ("0" + (newDate.getMonth() + 1)).slice(-2);
-    return ""
-  }
-
-  // formatDateToDay(startDate){
-  //   if(!startDate)
-  //     return "";
-  //   let newDate = new Date(startDate);
-  //   return ("0" + newDate.getDate()).slice(-2) + "/" + ("0" + (newDate.getMonth() + 1)).slice(-2);
-  // }
-
-  formatDateToHour(){
-    // if(this.state.startDate){
-      // let newDate = new Date(this.state.startDate);
-      // return this.formatAMPM(newDate);
-      //return newDate.getHours() + ":" + newDate.getMinutes();
-    // }
-    return "";
-  }
-
-
-
   contextFunction(snapshot){
-  console.log("data=");
-  //  console.log(data);
   var activitiesArrayAux = [];
     if(!snapshot){
        activitiesArrayAux = [
@@ -91,8 +63,6 @@ export default class ListComponent extends React.Component {
     }
     this.setState({activitiesArray: activitiesArrayAux});
 
-     // console.log("teste salve");
-      //console.log(item);
   }
   
   getActivitiesArray(){ 
@@ -114,7 +84,7 @@ export default class ListComponent extends React.Component {
     return (
       <ScrollView style={styles.scrollContainer}>
         <View style={styles.dataModuleContainer}>
-          {/* <DataModule Text="Atividade 1" Data={ this.formatDateToDay()} img="running" /> */}
+          {/* <DataModuleAlternative Text="Atividade 1" Data={ this.formatDateToDay()} img="running" /> */}
           {<ActivitiesElements activitiesArray = {this.state.activitiesArray} style={styles.dataEntry} />}
         </View>
       </ScrollView>
@@ -129,12 +99,19 @@ var printaQualquerMerda = () => {
 
 const ActivitiesElements = ({activitiesArray}) => (
   <View style={styles.activitiesContainer}>
-    <TouchableOpacity onPress={ printaQualquerMerda }> 
-      { activitiesArray.map(activity => (<DataModule key = {activity.id} Text = {"Atividade "+(activity.id + 1)} Data={activity.date} img="running"/>)) }
-    </TouchableOpacity>
+      { activitiesArray.map(activity => (<DataModuleAlternative key = {activity.id} 
+      TextDate = {"Data"} 
+      DataDate={activity.date} 
+
+      TextSteps = {"Passos"} 
+      DataSteps={activity.steps + " passos"} 
+
+      TextDuration = {"Duração"} 
+      DataDuration={activity.duration + "s"} 
+      img="running"/>)) }
   </View>
 );
-{/* <DataModule Text="Atividade 1" Data={ this.formatDateToDay()} img="running" /> */}
+{/* <DataModuleAlternative Text="Atividade 1" Data={ this.formatDateToDay()} img="running" /> */}
 
 
 

@@ -37,13 +37,13 @@ export default function BottomTabNavigator({ navigation, route }) {
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="candy-cane" />,
         }}
       />
-      <BottomTab.Screen
+      {/* <BottomTab.Screen
         name="History-monitor"
         component={HistoryMonitor}
         options={{
           title: 'Histórico de atividades',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="running" />,
-        }} />
+        }} /> */}
     </BottomTab.Navigator>
   );
 }
