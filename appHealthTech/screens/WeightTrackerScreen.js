@@ -1,29 +1,29 @@
 import React from 'react';
 import {ScrollView, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import FirebaseService from '../services/FirebaseService.js';
 import {firebaseDatabase} from '../utils/firebase';
-import { Button} from 'react-native';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { TouchableHighlight, TextInput, Alert} from 'react-native';
 
+var peso_meta;
 const styles = StyleSheet.create({
   main: {
     flex: 1,
     padding: 30,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#00BBD3'
+    backgroundColor: '#52b1cf'
   },
   title: {
     marginBottom: 20,
-    fontSize: 25,
+    fontSize: 14,
+    fontWeight: 'Bold',
     textAlign: 'center',
     color:'#FFFFFF'
   },
   itemInput: {
+    height: 38,
     height: 50,
     padding: 4,
-    marginRight: 5,
+    marginTop: 10,
     fontSize: 23,
     borderWidth: 1,
     borderColor: 'white',
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   buttonStyle: {
-    marginTop:10,
+    marginTop:109,
     paddingTop:15,
     paddingBottom:15,
     marginLeft:30,
@@ -68,20 +68,13 @@ const styles = StyleSheet.create({
 
 let addItem = item => {
   if(Boolean(Number(item)) && Number(item) > 0){
-    firebaseDatabase.ref('/leituras/key').update({Peso: item});
-    window.alert("Peso adicionado com sucesso");
-
-	var today = new Date();
-	var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-	var dateTime = date+' '+time;
-
-    firebaseDatabase.ref('/leituras/key/historico').push({Peso: item, Data: dateTime});
+    firebaseDatabase.ref('/leituras/key').update({Meta: item});
+    window.alert("Peso adicionada com sucesso");
   }
   else{
     window.alert("Entrada inválida");
   }
-  
+
 };
 
 export default class Homescreen extends React.Component {
@@ -93,15 +86,16 @@ export default class Homescreen extends React.Component {
 
 
   	handleSubmit = () => {
-    	addItem(this.state.name);
+      addItem(this.state.name);
+      this.props.navigation.navigate('Metas');
   };
-  
+
 
     render() {
 	    return (
+        
 	  		<View style={styles.main}>
-	  			
-		    	<Text style={styles.title}>Adicionar peso em kg</Text>
+		    	<Text style={styles.title}>Insira aqui o peso desejado</Text>
 
           <TextInput style={styles.itemInput}
           placeholder="Peso(kg)"
@@ -112,8 +106,9 @@ export default class Homescreen extends React.Component {
                     style= {styles.buttonStyle}
                     activeOpacity = { .5 }
                     onPress={this.handleSubmit}>
-                    <Text style={styles.textButton}> REGISTRAR </Text>
+                    <Text style={styles.textButton}> Registrar Meta </Text>
                     </TouchableOpacity>
+                    
   			</View>
 		);
 	}
