@@ -10,18 +10,26 @@ export default class ListComponent extends React.Component {
   }; 
 
   formatDateToDay(){
-    if(!this.state.startDate)
-      return "";
-    let newDate = new Date(this.state.startDate);
-    return ("0" + newDate.getDate()).slice(-2) + "/" + ("0" + (newDate.getMonth() + 1)).slice(-2);
+    // if(!this.state.startDate)
+    //   return "";
+    // let newDate = new Date(this.state.startDate);
+    // return ("0" + newDate.getDate()).slice(-2) + "/" + ("0" + (newDate.getMonth() + 1)).slice(-2);
+    return ""
   }
 
+  // formatDateToDay(startDate){
+  //   if(!startDate)
+  //     return "";
+  //   let newDate = new Date(startDate);
+  //   return ("0" + newDate.getDate()).slice(-2) + "/" + ("0" + (newDate.getMonth() + 1)).slice(-2);
+  // }
+
   formatDateToHour(){
-    if(this.state.startDate){
-      let newDate = new Date(this.state.startDate);
-      return this.formatAMPM(newDate);
+    // if(this.state.startDate){
+      // let newDate = new Date(this.state.startDate);
+      // return this.formatAMPM(newDate);
       //return newDate.getHours() + ":" + newDate.getMinutes();
-    }
+    // }
     return "";
   }
 
@@ -40,14 +48,42 @@ export default class ListComponent extends React.Component {
     return (
       <ScrollView style={styles.scrollContainer}>
         <View style={styles.dataModuleContainer}>
-          <DataModule Text="Atividade 1" Data={ this.formatDateToDay()} img="running" />
-          <DataModule Text="Atividade 2" Data={ this.formatDateToDay()} img="running" />
-          <DataModule Text="Atividade 3" Data={ this.formatDateToDay()} img="running" />
+          {/* <DataModule Text="Atividade 1" Data={ this.formatDateToDay()} img="running" /> */}
+          {<ActivitiesElements activitiesArray = {activitiesArray} style={styles.dataEntry} />}
         </View>
       </ScrollView>
     );
   }
 }
+
+const ActivitiesElements = ({activitiesArray}) => (
+  <View>
+    {/* { activitiesArray.map(activity => (<DataModule Text={"Atividade " + activity.id} Data={ this.formatDateToDay(activity.date)} img="running" />)) } */}
+    { activitiesArray.map(activity => (<DataModule Text = {"Atividade "+(activity.id + 1)} Data={activity.date} img="running"/>)) }
+  </View>
+);
+{/* <DataModule Text="Atividade 1" Data={ this.formatDateToDay()} img="running" /> */}
+
+const activitiesArray = [
+  {
+    "date": "15/08/2020",
+    "initialHour": "15h30",
+    "distance": "13",
+    "steps": "10",
+    "duration": "100",
+    "averageVelocity": "20",
+    "id": 0
+  },
+  {
+    "date": "23/12/2010",
+    "initialHour": "10h30",
+    "distance": "17",
+    "steps": "122",
+    "duration": "11",
+    "averageVelocity": "222",
+    "id": 1
+  }
+];
 
 const styles = StyleSheet.create({
   dataModuleContainer: {
@@ -64,5 +100,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
 
+  },
+  dataEntry: {
+    backgroundColor: "black",
   },
 });

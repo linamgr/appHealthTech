@@ -108,13 +108,20 @@ export default class PedometerComponent extends React.Component {
   }
 
   formatDateToHour(){
-    if(this.state.startDate){
+    if(this.state.startDate) {
       let newDate = new Date(this.state.startDate);
       return this.formatAMPM(newDate);
       //return newDate.getHours() + ":" + newDate.getMinutes();
     }
     return "";
   }
+
+  // teste unitario de formatDateToHour
+  // primeiro cenario -> startDate eh vazio (faz o mock dele ser vazio)
+  // ----> o teste tem que verificar se o retorno da formatDateToHour foi ""
+  // segundo cenario -> startDate nao eh vazio (faz o mock dele sem ser vazio)
+  // ----> faz o mock da formatAMPM retornar por exemplo 12/02/2020
+  // --------> o teste tem que verificar se o retorno da formatDateToHour foi 12/02/2020
 
   formatAMPM(date) {
     var hours = date.getHours();
@@ -170,11 +177,7 @@ export default class PedometerComponent extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  scrollContainer: {
-    // borderWidth: 2,
-    // borderStyle: "solid",
-    // borderColor: "green"
-  },
+
   dataModuleContainer: {
     display: "flex",
     flexDirection: "column",

@@ -9,7 +9,7 @@ export default function HistoryMonitor() {
 
     return(
         <View style={styles.historyMonitorContainer}>
-            <Text style={styles.title}>Histórico de Atividades</Text>
+            <Text style={styles.title}>Detalhes da Atividade</Text>
             <HistoryComponent/>
         </View>
     )

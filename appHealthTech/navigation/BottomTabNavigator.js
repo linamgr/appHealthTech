@@ -21,20 +21,20 @@ export default function BottomTabNavigator({ navigation, route }) {
 
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
-       <BottomTab.Screen
-        name="history-monitor"
-        component={HistoryMonitor}
-        options={{
-          title: 'Histórico de atividade',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="candy-cane" />,
-        }}
-      />
       <BottomTab.Screen
         name="list-monitor"
         component={ListMonitor}
         options={{
           title: 'Lista de atividades',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="chess-knight" />,
+        }}
+      />
+       <BottomTab.Screen
+        name="history-monitor"
+        component={HistoryMonitor}
+        options={{
+          title: 'Detalhes da atividade',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="candy-cane" />,
         }}
       />
       <BottomTab.Screen
