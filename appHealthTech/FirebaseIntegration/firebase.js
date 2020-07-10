@@ -18,36 +18,25 @@ var app = firebase.initializeApp(firebaseConfig);
 var database = app.database();        
 
 //Create a interface for this
-const email = "lucas@usp.br";
-const password = "ASDADS74Hk18salaj!@#"; 
+const email = "lucas_alabmo@usp.br";
+const password = "ASDADS7&&asdk18salaj!@#"; 
 
-/*
-app.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    console.log(errorCode + error.message);
-    // ...
-});
 
-*/
-/*
+
 app.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
-    console.log(errorCode + error.message);
-    // ...
-});        
+    console.log(errorCode + error.message + "creating user now:");
+    app.auth().createUserWithEmailAndPassword(email, password).catch(error => console.log(error.code()));        
+});
 
-*/
-
-var user = {userId : "luccas-nao-e-lucas"};
+//var user = {userId : "iVMFBbfUTNS2WLhOvWP35fwtvVT2"};
 
 function writeData(object)
 {   
     //signInWithEmailAndPassword(email,password);_
-    //var user = app.auth().currentUser;
+    var user = app.auth().currentUser;
     if (user) {
         var userId = user.uid;
         database.ref( '/'+userId + '/walks').push(object).then(data => data).catch(error => error);    
@@ -56,30 +45,26 @@ function writeData(object)
     }
 }
 
-function readDataOnce()
+function readDataOnce(func)
 {   
-    //var user = app.auth().currentUser;
+    var user = app.auth().currentUser;
     if (!user) {
         console.log("No user signed");
         return;
-    } 
+    }
 
-    var returnValue;
     database.ref('/' + user.uid + '/walks').on("value", (snapshot) => {
-        console.log(snapshot.val());
-        snapshot.forEach((child)=>{
-            let item = child.val();
-        });
+        //console.log(snapshot.val());
+        if(snapshot.val()){
+            func(snapshot);
+        }
 
-        returnValue = snapshot;
     })
-    
-    return returnValue;
 }
 
 
-export function readAllPedometerData(){
-    return readDataOnce();
+export function readAllPedometerData(func){
+    return readDataOnce(func);
 }
 
 export function pushPedometerData(date){

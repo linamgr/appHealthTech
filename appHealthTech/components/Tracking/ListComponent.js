@@ -7,9 +7,30 @@ import * as firebase from '../../FirebaseIntegration/firebase';
 export default class ListComponent extends React.Component {
 
   state = {
-    startDate: null,
+    startDate: "testeHonesto",
     finishDate: null,
+    activitiesArray: [
+      {
+        "date": "0",
+        "initialHour": "0",
+        "distance": "0",
+        "steps": "0",
+        "duration": "0",
+        "averageVelocity": "0",
+        "id": 0
+      }
+    ]
   }; 
+
+  componentDidMount(){
+    this.getActivitiesArray();
+  }
+
+
+  componentDidUpdate(prevProps) {
+    //console.log("update");
+    //this.getActivitiesArray();
+  }
 
   formatDateToDay(){
     // if(!this.state.startDate)
@@ -35,6 +56,49 @@ export default class ListComponent extends React.Component {
     return "";
   }
 
+
+
+  contextFunction(snapshot){
+  console.log("data=");
+  //  console.log(data);
+  var activitiesArrayAux = [];
+    if(!snapshot){
+       activitiesArrayAux = [
+        {
+          "date": "0",
+          "initialHour": "0",
+          "distance": "0",
+          "steps": "0",
+          "duration": "0",
+          "averageVelocity": "0",
+          "id": 0
+        }
+      ]
+    }else{
+      let i = 0;
+      snapshot.forEach((child)=>{
+        let item = {};
+        item["date"] = child.val().date;
+        item["initialHour"] = child.val().time;
+        item["distance"] = child.val().distance;
+        item["steps"] = child.val().steps;
+        item["duration"] = child.val().duration;
+        item["averageVelocity"] = child.val().vel;
+        item["id"] = i;    
+        activitiesArrayAux.push(item); 
+        i++
+      });
+    }
+    this.setState({activitiesArray: activitiesArrayAux});
+
+     // console.log("teste salve");
+      //console.log(item);
+  }
+  
+  getActivitiesArray(){ 
+    let data = firebase.readAllPedometerData(this.contextFunction.bind(this));
+  }
+
   formatAMPM(date) {
     var hours = date.getHours();
     var minutes = date.getMinutes();
@@ -51,7 +115,7 @@ export default class ListComponent extends React.Component {
       <ScrollView style={styles.scrollContainer}>
         <View style={styles.dataModuleContainer}>
           {/* <DataModule Text="Atividade 1" Data={ this.formatDateToDay()} img="running" /> */}
-          {<ActivitiesElements activitiesArray = {activitiesArray} style={styles.dataEntry} />}
+          {<ActivitiesElements activitiesArray = {this.state.activitiesArray} style={styles.dataEntry} />}
         </View>
       </ScrollView>
     );
@@ -67,40 +131,6 @@ const ActivitiesElements = ({activitiesArray}) => (
 {/* <DataModule Text="Atividade 1" Data={ this.formatDateToDay()} img="running" /> */}
 
 
-var activitiesArray = function getData(){ 
-  var activitiesArrayAux = [];
-  let data = firebase.readAllPedometerData();
-  console.log("data=");
-  console.log(data);
-  if(!data){
-    return [
-      {
-        "date": "0",
-        "initialHour": "0",
-        "distance": "0",
-        "steps": "0",
-        "duration": "0",
-        "averageVelocity": "0",
-        "id": 0
-      }
-    ]
-  }
-
-  let i = 0;
-  data.forEach((child)=>{
-    let item = {};
-    item["date"] = child.val().date;
-    item["initialHour"] = child.val().time;
-    item["distance"] = child.val().distance;
-    item["steps"] = child.val().steps;
-    item["duration"] = child.val().duration;
-    item["averageVelocity"] = child.val().vel;
-    item["id"] = i;    
-    activitiesArrayAux.push(item); 
-    i++
-  });
-  return activitiesArrayAux;
-}();
 
 /*
 const activitiesArray = [
