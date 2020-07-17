@@ -1,36 +1,64 @@
+import React, { Component } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import * as React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import Principal from './screens/Principal';
+import Listar from './screens/Listar';
+import Adicionar from './screens/Adicionar';
+import Grafico from './screens/Grafico';
+import Editar from './screens/Editar';
+import Metas from './screens/Metas';
+import firebase from 'firebase';
 
-import useCachedResources from './hooks/useCachedResources';
-import BottomTabNavigator from './navigation/BottomTabNavigator';
-import LinkingConfiguration from './navigation/LinkingConfiguration';
+import { YellowBox } from "react-native";
+    import _ from "lodash";
+    YellowBox.ignoreWarnings(["Setting a timer"]);
+    const _console = _.clone(console);
+    console.warn = (message) => {
+    if (message.indexOf("Setting a timer") <= -1) {
+    _console.warn(message);
+    }
+};
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator(); 
 
-export default function App(props) {
-  const isLoadingComplete = useCachedResources();
+export default class App extends Component{
+  render(){
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName = "Principal">
+        <Stack.Screen name = "Metas" component = {Metas} options={{
+        title: 'Metas',
+       
+        }}/>
+        <Stack.Screen name = "Principal" component = {Principal} options={{
+        headerShown: false,
+        }}/>
+        <Stack.Screen name = "Adicionar" component = {Adicionar} options={{
+        title: 'Início',
 
-  if (!isLoadingComplete) {
-    return null;
-  } else {
-    return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
-        <NavigationContainer linking={LinkingConfiguration}>
-          <Stack.Navigator>
-            <Stack.Screen name="Root" component={BottomTabNavigator} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </View>
-    );
+        }}/>
+        <Stack.Screen name = "Grafico" component = {Grafico} options={{
+        title: 'Início',
+        
+        }}/>
+        <Stack.Screen name = "Listar" component = {Listar} options={{
+        title: 'Início',
+       
+        }}/>
+        <Stack.Screen name = "Editar" component = {Editar} options={{
+        title: 'Início',
+      
+        }}/>
+        </Stack.Navigator>
+    </NavigationContainer>
+  );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
+  screen: {
+    flex: 1
+  }
 });
+console.disableYellowBox = true; 
